@@ -36,7 +36,9 @@
 </head>
 <body draggable="false">
 
-<!-- Splash -->
+<!-- ============================================================
+     SPLASH SCREEN
+     ============================================================ -->
 <div id="ashiro-splash">
     <div class="as-logo-wrap">
         <div class="as-logo-mark">
@@ -48,7 +50,9 @@
     <div class="as-load-bar"><div></div></div>
 </div>
 
-<!-- Disclaimer (fallback) -->
+<!-- ============================================================
+     DISCLAIMER (fallback)
+     ============================================================ -->
 <div id="disclaimer">
     <div id="optimized">
         <div id="emoji">📱</div>
@@ -59,16 +63,18 @@
     <div id="disc-overlay"></div>
 </div>
 
-<!-- Upload / hidden inputs -->
+<!-- ============================================================
+     HIDDEN INPUTS & MEDIA
+     ============================================================ -->
 <audio controls id="audio-thing"><source src="assets/audio.wav" type="audio/wav"></audio>
 <input type="file" id="filepick" accept="image/*,video/*,audio/*" multiple>
 <input type="file" id="filepick2" accept="audio/*">
 <input type="file" id="filepick3" accept="application/json">
 <input type="file" id="import" style="display:none" accept=".json" aria-hidden="true">
 
-<!-- ============================
-     TOP BAR (ala Alight Motion)
-     ============================ -->
+<!-- ============================================================
+     TOP BAR
+     ============================================================ -->
 <header id="ashiro-topbar">
     <button class="as-icon-btn" id="as-menu-btn" aria-label="Menu">
         <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
@@ -92,28 +98,26 @@
     </button>
 </header>
 
-<!-- ============================
+<!-- ============================================================
      CANVAS AREA
-     ============================ -->
+     ============================================================ -->
 <div id="canvas-area">
     <div id="canvas-wrap">
         <canvas id="canvas"></canvas>
     </div>
 
-    <!-- Zoom HUD (ala Alight Motion, kanan atas) -->
     <div id="ashiro-zoom-hud">
         <button class="as-hud-btn" id="as-zoom-out">−</button>
         <span id="zoom-display">100%</span>
         <button class="as-hud-btn" id="as-zoom-in">+</button>
     </div>
 
-    <!-- Hand tool -->
     <button id="hand-tool" class="as-hud-btn" title="Hand tool">
-        <img src="assets/hand-tool.svg" alt="Hand">
+        <img src="assets/hand-tool.svg" alt="Hand tool">
     </button>
 
-    <!-- Legacy kontrol top-canvas (disembunyikan tapi tetap ada) -->
-    <div id="top-canvas" style="display:none">
+    <!-- Legacy (disembunyikan, JS butuh) -->
+    <div id="top-canvas">
         <div id="undo"><img src="assets/undo.svg" alt=""> Undo</div>
         <div id="redo"><img src="assets/undo.svg" alt=""> Redo</div>
         <div id="other-controls">
@@ -127,7 +131,7 @@
             </div>
         </div>
     </div>
-    <div id="bottom-canvas" style="display:none">
+    <div id="bottom-canvas">
         <a id="sponsor" href="#" target="_blank" rel="noopener"><img src="assets/sponsor.svg" alt=""> Sponsor</a>
         <a id="alyssa-credit" href="#" target="_blank" rel="noopener">By <span>Reinhard</span></a>
     </div>
@@ -137,11 +141,10 @@
     <img src="assets/loading-video.svg" id="load-video" class="load-media" alt="">
 </div>
 
-<!-- ============================
+<!-- ============================================================
      TIMELINE AREA
-     ============================ -->
+     ============================================================ -->
 <section id="ashiro-timeline-area">
-    <!-- Playback head -->
     <div id="ashiro-playback">
         <button class="as-play-btn" id="play-button" aria-label="Main">
             <img src="assets/play-button.svg" alt="Play">
@@ -150,7 +153,9 @@
             <span id="current-time-label">00:00.0</span>
         </div>
         <div class="as-scrubber" id="as-scrubber">
-            <div class="as-scrubber-track"><div class="as-scrubber-fill" id="as-scrubber-fill"></div></div>
+            <div class="as-scrubber-track">
+                <div class="as-scrubber-fill" id="as-scrubber-fill"></div>
+            </div>
             <div class="as-scrubber-thumb" id="as-scrubber-thumb"></div>
         </div>
         <div class="as-time">
@@ -164,7 +169,6 @@
         </button>
     </div>
 
-    <!-- Layer list -->
     <div id="layer-list">
         <div id="layerhead">
             <span>Layer</span>
@@ -175,7 +179,7 @@
         </div>
     </div>
 
-    <!-- Legacy timeline (JS butuh) -->
+    <!-- Legacy timeline (JS butuh, disembunyikan via CSS) -->
     <div id="timearea">
         <div id="timeline">
             <div id="seekarea">
@@ -190,9 +194,9 @@
     </div>
 </section>
 
-<!-- ============================
+<!-- ============================================================
      BOTTOM TOOLBAR
-     ============================ -->
+     ============================================================ -->
 <nav id="toolbar" class="noselect">
     <div id="logo"><img src="assets/logo.svg" alt="Ashiro Motion"></div>
     <div id="tool-wrap">
@@ -206,7 +210,9 @@
     </div>
 </nav>
 
-<!-- More menu -->
+<!-- ============================================================
+     MORE MENU
+     ============================================================ -->
 <div id="more-over">
     <div id="upload-lottie"><img src="assets/upload-grey.svg" alt=""> Upload Lottie</div>
     <div id="clear-project"><img src="assets/clear.svg" alt=""> Kosongkan proyek</div>
@@ -214,9 +220,9 @@
 
 <div id="behind-browser"></div>
 
-<!-- ============================
-     BROWSER PANEL (slide-up)
-     ============================ -->
+<!-- ============================================================
+     BROWSER PANEL (bottom-sheet)
+     ============================================================ -->
 <div id="browser">
     <div id="browser-container">
         <div id="search-fixed">
@@ -238,9 +244,9 @@
     </div>
 </div>
 
-<!-- ============================
+<!-- ============================================================
      PROPERTIES PANEL
-     ============================ -->
+     ============================================================ -->
 <div id="properties">
     <div id="properties-overlay"></div>
     <div id="align" class="align-off">
@@ -300,9 +306,9 @@
     </div>
 </div>
 
-<!-- ============================
+<!-- ============================================================
      FILTERS PANEL
-     ============================ -->
+     ============================================================ -->
 <div id="filters-parent">
     <div id="filters">
         <div id="filters-container">
@@ -358,9 +364,9 @@
     </div>
 </div>
 
-<!-- ============================
+<!-- ============================================================
      MODALS
-     ============================ -->
+     ============================================================ -->
 <div id="upload-popup">
     <div id="upload-popup-container">
         <div id="upload-popup-header">
@@ -387,11 +393,11 @@
     <p class="subheader">Format</p>
     <div id="radio">
         <input class="magic-radio" type="radio" name="radio" id="webm-format" value="webm" checked>
-        <label for="webm-format">WEBM <span>(tercepat)</span></label>
+        <label for="webm-format">WEBM video <span>(tercepat)</span></label>
         <input class="magic-radio" type="radio" name="radio" value="mp4" id="mp4-format">
-        <label for="mp4-format">MP4</label>
+        <label for="mp4-format">MP4 video</label>
         <input class="magic-radio" type="radio" name="radio" value="gif" id="gif-format">
-        <label for="gif-format">GIF</label>
+        <label for="gif-format">GIF animasi</label>
         <input class="magic-radio" type="radio" name="radio" value="image" id="image-format">
         <label for="image-format">Gambar</label>
     </div>
@@ -411,6 +417,9 @@
 <div id="color-picker"></div>
 <div id="color-picker-fill"></div>
 
+<!-- ============================================================
+     LEGACY BOTTOM AREA (disembunyikan via CSS)
+     ============================================================ -->
 <div id="timeline-handle"></div>
 <div id="bottom-area" class="noselect">
     <div id="keyframe-properties">
@@ -437,10 +446,10 @@
     <div id="nothing"></div>
 </div>
 
-<div id="controls" class="noselect" style="display:none">
-    <img id="timeline-big" src="assets/timeline-big.svg" alt="">
+<div id="controls" class="noselect">
+    <img id="timeline-big" src="assets/timeline-big.svg" alt="Zoom in timeline">
     <div id="timeline-zoom"></div>
-    <img id="timeline-small" src="assets/timeline-small.svg" alt="">
+    <img id="timeline-small" src="assets/timeline-small.svg" alt="Zoom out timeline">
     <div id="speed">
         <div id="speed-settings">
             <div class="speed" data-speed="4">4.0x</div>
@@ -453,11 +462,11 @@
         <img src="assets/zap.svg" alt=""> <span>1.0x</span> <img id="speed-arrow" src="assets/arrow.svg" alt="">
     </div>
     <div id="playback">
-        <div id="current-time"><input value="00:00:00" readonly></div>
+        <div id="current-time"><input value="00:00:00" readonly aria-label="Waktu sekarang"></div>
         <img src="assets/skip.svg" id="legacy-skip-back" alt="">
         <img src="assets/play-button.svg" id="legacy-play" alt="">
         <img src="assets/skip.svg" id="legacy-skip-fwd" alt="">
-        <div id="total-time"><input value="00:00:00" readonly></div>
+        <div id="total-time"><input value="00:00:00" readonly aria-label="Total waktu"></div>
     </div>
     <div id="controls-right">
         <div id="share"><img src="assets/importexport.svg" alt=""> Impor &amp; ekspor</div>
@@ -469,7 +478,9 @@
 <video id="test-video"></video>
 <input id="emptyInput" value=" " style="opacity:0">
 
-<!-- Libraries -->
+<!-- ============================================================
+     LIBRARIES
+     ============================================================ -->
 <script src="js/libraries/localbase.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@simonwep/selection-js/lib/selection.min.js"></script>
@@ -482,7 +493,9 @@
 <script src="js/libraries/anime.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
-<!-- App -->
+<!-- ============================================================
+     APP SCRIPTS
+     ============================================================ -->
 <script src="js/init.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/align.js"></script>
@@ -494,31 +507,93 @@
 <script src="js/functions.js"></script>
 <script src="js/events.js"></script>
 
-<!-- Ashiro mobile bootstrap -->
+<!-- ============================================================
+     ASHIRO BOOTSTRAP
+     ============================================================ -->
 <script>
 (function () {
-    // Splash
-    var splash = document.getElementById('ashiro-splash');
-    function hideSplash() {
-        if (!splash) return;
-        splash.classList.add('as-hide');
-        setTimeout(function () { splash.remove(); }, 600);
-    }
-    if (document.readyState === 'complete') setTimeout(hideSplash, 500);
-    else window.addEventListener('load', function () { setTimeout(hideSplash, 500); });
-    setTimeout(hideSplash, 4000);
+    'use strict';
 
+    /* --- 1. Splash dismissal --- */
+    var splash = document.getElementById('ashiro-splash');
+    var splashHidden = false;
+    function hideSplash() {
+        if (splashHidden || !splash) return;
+        splashHidden = true;
+        splash.classList.add('as-hide');
+        setTimeout(function () {
+            if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+        }, 600);
+    }
+    if (document.readyState === 'complete') {
+        setTimeout(hideSplash, 500);
+    } else {
+        window.addEventListener('load', function () { setTimeout(hideSplash, 500); });
+    }
+    setTimeout(hideSplash, 4000); /* fail-safe */
+
+    /* --- 2. Deteksi mobile --- */
     var isMobile = window.matchMedia('(max-width: 900px)').matches &&
                    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    if (!isMobile) return;
 
+    if (!isMobile) return;
     document.body.classList.add('is-mobile');
 
-    // Buka panel bawah
+    /* --- 3. Bridge top bar → legacy buttons (biar ui.js tetap jalan) --- */
+    var legacyUndo = document.getElementById('undo');
+    var legacyRedo = document.getElementById('redo');
+    var legacyZoom = document.getElementById('zoom-level');
+
+    var asUndo = document.getElementById('as-undo');
+    var asRedo = document.getElementById('as-redo');
+    var asZoomIn = document.getElementById('as-zoom-in');
+    var asZoomOut = document.getElementById('as-zoom-out');
+    var asExport = document.getElementById('as-export-btn');
+
+    if (asUndo && legacyUndo) {
+        asUndo.addEventListener('click', function () { legacyUndo.click(); });
+    }
+    if (asRedo && legacyRedo) {
+        asRedo.addEventListener('click', function () { legacyRedo.click(); });
+    }
+    if (asZoomIn && legacyZoom) {
+        asZoomIn.addEventListener('click', function () {
+            var opts = document.querySelectorAll('.zoom-options-item');
+            if (opts && opts.length) {
+                // trigger zoom in pakai simulasi klik pada tombol besar
+                var evt = new Event('click');
+                var zl = document.getElementById('zoom-level');
+                if (zl) zl.click();
+            }
+        });
+    }
+    if (asExport) {
+        asExport.addEventListener('click', function () {
+            // buka modal download legacy
+            var dl = document.getElementById('download');
+            if (dl) dl.click();
+            else {
+                var dm = document.getElementById('download-modal');
+                if (dm) dm.classList.add('modal-open');
+            }
+        });
+    }
+
+    /* --- 4. Sync HUD zoom display --- */
+    var zoomDisplay = document.getElementById('zoom-display');
+    var legacyZoomSpan = document.querySelector('#zoom-level span');
+    if (zoomDisplay && legacyZoomSpan) {
+        var zoomObserver = new MutationObserver(function () {
+            zoomDisplay.textContent = legacyZoomSpan.textContent;
+        });
+        zoomObserver.observe(legacyZoomSpan, { childList: true, characterData: true, subtree: true });
+    }
+
+    /* --- 5. Panel buka/tutup --- */
     function openPanel(id) {
+        closeAllPanels();
         var el = document.getElementById(id);
-        if (!el) return;
-        el.classList.add('mobile-open');
+        if (el) el.classList.add('mobile-open');
     }
     function closeAllPanels() {
         ['browser', 'properties', 'filters-parent'].forEach(function (id) {
@@ -526,34 +601,120 @@
             if (el) el.classList.remove('mobile-open');
         });
     }
+    window.asOpenPanel = openPanel;
+    window.asClosePanels = closeAllPanels;
 
-    // Toolbar → buka panel
+    /* Toolbar → buka browser */
     document.querySelectorAll('#tool-wrap .tool').forEach(function (tool) {
         tool.addEventListener('click', function () {
             var id = tool.id;
-            if (id === 'more-tool') return;
-            var t = document.getElementById('browser');
-            if (t) {
-                t.classList.add('mobile-open');
-                t.classList.remove('mobile-closed');
-            }
+            if (id === 'more-tool') return; // ditangani ui.js
+            openPanel('browser');
         }, true);
     });
 
-    // Tap kanvas → tutup panel
+    /* Tap kanvas → tutup panel */
     document.addEventListener('touchstart', function (e) {
         if (e.target.tagName === 'CANVAS') closeAllPanels();
     }, { passive: true });
 
-    // Zoom HUD
-    var zoomIn = document.getElementById('as-zoom-in');
-    var zoomOut = document.getElementById('as-zoom-out');
-    if (zoomIn) zoomIn.addEventListener('click', function () {
-        var el = document.getElementById('zoom-level');
-        if (el) el.click();
-    });
+    /* Tombol collapse di browser */
+    var collapse = document.getElementById('collapse');
+    if (collapse) collapse.addEventListener('click', closeAllPanels);
 
-    console.log('[Ashiro Motion] mobile mode · by Reinhard');
+    /* Tombol close di filters */
+    var filtersClose = document.getElementById('filters-close');
+    if (filtersClose) filtersClose.addEventListener('click', closeAllPanels);
+
+    /* --- 6. Playback bridge: play button & skip --- */
+    var asPlay = document.getElementById('play-button');
+    var asSkipBack = document.getElementById('skip-backward');
+    var asSkipFwd = document.getElementById('skip-forward');
+    var legacyPlay = document.getElementById('legacy-play');
+    var legacySkipBack = document.getElementById('legacy-skip-back');
+    var legacySkipFwd = document.getElementById('legacy-skip-fwd');
+
+    if (asPlay && legacyPlay) asPlay.addEventListener('click', function () { legacyPlay.click(); });
+    if (asSkipBack && legacySkipBack) asSkipBack.addEventListener('click', function () { legacySkipBack.click(); });
+    if (asSkipFwd && legacySkipFwd) asSkipFwd.addEventListener('click', function () { legacySkipFwd.click(); });
+
+    /* --- 7. Scrubber sinkronisasi dengan #seekbar legacy --- */
+    var scrubber = document.getElementById('as-scrubber');
+    var scrubberFill = document.getElementById('as-scrubber-fill');
+    var scrubberThumb = document.getElementById('as-scrubber-thumb');
+    var currentTimeLabel = document.getElementById('current-time-label');
+    var totalTimeLabel = document.getElementById('total-time-label');
+    var legacyCurrentTime = document.querySelector('#current-time input');
+    var legacyTotalTime = document.querySelector('#total-time input');
+    var legacySeekbar = document.getElementById('seekbar');
+    var legacyInnerTimeline = document.getElementById('inner-timeline');
+
+    if (scrubber && legacySeekbar && legacyInnerTimeline) {
+        var totalWidth = legacyInnerTimeline.scrollWidth || legacyInnerTimeline.offsetWidth || 1;
+
+        function syncScrubber() {
+            var seekLeft = parseFloat(legacySeekbar.style.left) || 0;
+            var percent = Math.max(0, Math.min(1, seekLeft / totalWidth));
+            if (scrubberFill) scrubberFill.style.width = (percent * 100) + '%';
+            if (scrubberThumb) scrubberThumb.style.left = (percent * 100) + '%';
+        }
+
+        var seekObserver = new MutationObserver(syncScrubber);
+        seekObserver.observe(legacySeekbar, { attributes: true, attributeFilter: ['style'] });
+
+        /* Scrubber drag manual */
+        var isDragging = false;
+        function handleScrubberMove(clientX) {
+            var rect = scrubber.getBoundingClientRect();
+            var percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+            var targetX = percent * totalWidth;
+            legacySeekbar.style.left = targetX + 'px';
+            legacySeekbar.dispatchEvent(new Event('mousedown'));
+            syncScrubber();
+        }
+        scrubber.addEventListener('pointerdown', function (e) {
+            isDragging = true;
+            scrubber.setPointerCapture(e.pointerId);
+            handleScrubberMove(e.clientX);
+        });
+        scrubber.addEventListener('pointermove', function (e) {
+            if (!isDragging) return;
+            handleScrubberMove(e.clientX);
+        });
+        scrubber.addEventListener('pointerup', function (e) {
+            isDragging = false;
+            try { scrubber.releasePointerCapture(e.pointerId); } catch (err) {}
+        });
+    }
+
+    /* Sync label waktu */
+    function syncTimeLabels() {
+        if (legacyCurrentTime && currentTimeLabel) {
+            var t = legacyCurrentTime.value || '00:00:00';
+            currentTimeLabel.textContent = t.substring(0, 8);
+        }
+        if (legacyTotalTime && totalTimeLabel) {
+            var t2 = legacyTotalTime.value || '00:00:00';
+            totalTimeLabel.textContent = t2.substring(0, 8);
+        }
+    }
+    if (legacyCurrentTime) {
+        var timeObserver = new MutationObserver(syncTimeLabels);
+        timeObserver.observe(legacyCurrentTime, { attributes: true, attributeFilter: ['value'] });
+        /* Fallback: cek tiap 200ms */
+        setInterval(syncTimeLabels, 200);
+    }
+
+    /* --- 8. Cegah double-tap zoom --- */
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function (e) {
+        var now = Date.now();
+        if (now - lastTouchEnd < 350) e.preventDefault();
+        lastTouchEnd = now;
+    }, { passive: false });
+
+    /* --- 9. Log --- */
+    console.log('%c[Ashiro Motion]', 'color:#7c5cff;font-weight:700;', 'mobile mode · by Reinhard');
 })();
 </script>
 </body>
