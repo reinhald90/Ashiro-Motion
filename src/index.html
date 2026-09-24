@@ -1,390 +1,560 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="nice-select.css">
-        <link ref="stylesheet" href="range-slider.min.css">
-        <link rel="stylesheet" href="magic-check.min.css">
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="/favicon.ico">
-				<!-- Primary Meta Tags -->
-<title>Motionity - The web-based motion graphics editor for everyone</title>
-<meta name="title" content="Motionity - The web-based motion graphics editor for everyone">
-<meta name="description" content="Create animated videos for free with Motionity, an open source motion graphics editor with keyframing, masking, filters, text animations, and more. ">
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a14">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<!-- Open Graph / Facebook -->
+<title>Ashiro Motion — Editor Motion Graphics Mobile</title>
+<meta name="description" content="Ashiro Motion — editor motion graphics open source untuk mobile & desktop. Keyframe, layer, efek, dan animasi teks dalam satu aplikasi.">
+<meta name="author" content="Reinhard">
+
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.motionity.app/">
-<meta property="og:title" content="Motionity - The web-based motion graphics editor for everyone">
-<meta property="og:description" content="Create animated videos for free with Motionity, an open source motion graphics editor with keyframing, masking, filters, text animations, and more. ">
-<meta property="og:image" content="https://motionity.app/meta.png">
+<meta property="og:title" content="Ashiro Motion — Editor Motion Graphics Mobile">
+<meta property="og:description" content="Editor motion graphics open source. Dibuat oleh Reinhard.">
+<meta property="og:image" content="meta.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ashiro Motion">
+<meta name="twitter:description" content="Editor motion graphics open source untuk mobile.">
+<meta name="twitter:image" content="meta.png">
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://www.motionity.app/">
-<meta property="twitter:title" content="Motionity - The web-based motion graphics editor for everyone">
-<meta property="twitter:description" content="Create animated videos for free with Motionity, an open source motion graphics editor with keyframing, masking, filters, text animations, and more. ">
-<meta property="twitter:image" content="https://motionity.app/meta.png">
-    </head>
-    <body draggable="false">
-			<div id="disclaimer">
-				<div id="optimized">
-					<div id="emoji">🤔</div>
-					<div id="opt-title">Motionity isn't optimized for mobile</div>
-					<div id="opt-desc">You need to use a computer to be able to create animations with Motionity.</div>
-					<a href="https://twitter.com/alyssaxuu" target="_blank" id="opt-button">Other products by the maker</a>
-				</div>
-				<div id="disc-overlay"></div>
-			</div>
-        <audio controls id="audio-thing">
-          <source src="assets/audio.wav" type="audio/wav">
-        </audio>
-        <input type="file" id="filepick" accept="image/*,video/*,audio/*" multiple>
-        <input type="file" id="filepick2" accept="audio/*">
-				<input type="file" id="filepick3" accept="application/json">
-				<input type="file" id="import" style="display:none" accept='.json' aria-hidden="true" >
-				<div id="upload-popup">
-					<div id="upload-popup-container">
-						<div id="upload-popup-header">
-							<div id="upload-popup-title">Upload media</div>
-							<img id="upload-popup-close" src="assets/close.svg">
-						</div>
-						<div id="upload-drop-area">
-							<div id="upload-drop-group">
-								<img src="assets/upload.svg">
-								<div id="upload-drop-title">Click to upload</div>
-								<div id="upload-drop-subtitle">Or drag and drop a file</div>
-							</div>
-						</div>
-						<div id="upload-link">
-							<input id="upload-link-input" placeholder="Paste an image of video URL">
-							<div id="upload-link-add">Add</div>
-						</div>
-					</div>
-					<div id="upload-overlay"></div>
-				</div>
-        <div id="download-modal">
-            <p class="header">Download settings</p>
-            <p class="subheader">Formats</p>
-            <div id="radio">
-              <input class="magic-radio" type="radio" name="radio" id="webm-format" value="webm" checked>
-              <label for="webm-format">WEBM video <span>(fastest)</span></label>
-            	<input class="magic-radio" type="radio" name="radio" value="mp4" id="mp4-format">
-              <label for="mp4-format">MP4 video</label>
-              <input class="magic-radio" type="radio" name="radio" value="gif" id="gif-format">
-              <label for="gif-format">Animated GIF</label>
-							<input class="magic-radio" type="radio" name="radio" value="image" id="image-format">
-              <label for="image-format">Image</label>
-            </div>
-            <div id="download-real">Download</div>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="nice-select.css">
+<link rel="stylesheet" href="range-slider.min.css">
+<link rel="stylesheet" href="magic-check.min.css">
+<link rel="stylesheet" href="pickr.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body draggable="false">
+
+<!-- Splash -->
+<div id="ashiro-splash">
+    <div class="as-logo-wrap">
+        <div class="as-logo-mark">
+            <span></span><span></span><span></span>
         </div>
-				<div id="import-export-modal">
-					<p class="header">Import & export</p>
-					<p class="subtitle">Save this project locally, or load an existing one.</p>
-					<p class="header-2">Import a project</p>
-					<div id="import-project"><img src="assets/import.svg"> <span>Import</span></div>
-					<p class="header-2">Export this project</p>
-					<div id="export-project"><img src="assets/download-icon.svg"> <span>Export</span></div>
-				</div>
-        <div id="background-overlay"></div>
-        <div id="color-picker"></div>
-        <div id="color-picker-fill"></div>
-        <div id="toolbar" class="noselect">
-					<div id="logo"><img src="assets/logo.svg"></div>
-						<div id="tool-wrap">
-							<div class="tool" id="upload-tool"><img src="assets/uploads.svg"><p>Uploads</p></div>
-							<div class="tool tool-active" id="shape-tool"><img src="assets/shape-active.svg"><p>Objects</p></div>
-							<div class="tool" id="image-tool"><img src="assets/image.svg"><p>Images</p></div>
-							<div class="tool" id="text-tool"><img src="assets/text.svg"><p>Text</p></div>
-							<div class="tool" id="video-tool"><img src="assets/video.svg"><p>Videos</p></div>
-							<div class="tool" id="audio-tool"><img src="assets/audio.svg"><p>Audio</p></div>
-							<div class="tool" id="more-tool"><img src="assets/more-hoz.svg"><p>More</p></div>
-					</div>
-				</div>
-				<div id="more-over">
-					<div id="upload-lottie">
-						<img src="assets/upload-grey.svg"> Upload Lottie
-					</div>						
-					<div id="clear-project">
-						<img src="assets/clear.svg"> Clear project
-					</div>
-				</div>
-				<div id="behind-browser"></div>
-        <div id="browser">
-            <div id="browser-container">
-							<div id="search-fixed"><p class="property-title">Objects</p><img id="collapse" src="assets/collapse.svg"><div id="browser-search"><input placeholder="Search..."><img src="assets/search.svg" id="search-icon"><img src="assets/delete.svg" id="delete-search"><div id="search-button">Go</div></div></div><div id="shapes-cont"><p class="row-title">Shapes</p><div class="gallery-row" id="shapes-row"></div><p class="row-title">Emojis</p><div class="gallery-row" id="emojis-row"></div></div>
-            </div>
-        </div>
-        <div id="properties">
-        <div id="properties-overlay"></div>
-        <div id="align" class="align-off">
-            <div id="align-v">
-                <img class="align" id="align-top" src="assets/align-top.svg" title="Align to the top">
-                <img class="align" id="align-center-v" src="assets/align-center-v.svg" title="Align to the center">
-                <img class="align" id="align-bottom" src="assets/align-bottom.svg" title="Align to the bottom">
-            </div>
-            <div id="align-h">
-                <img class="align" id="align-left" src="assets/align-left.svg" title="Align to the left">
-                <img class="align" id="align-center-h" src="assets/align-center-h.svg" title="Align to the center">
-                <img class="align" id="align-right" src="assets/align-right.svg" title="Align to the right">
+        <h1>Ashiro<span>Motion</span></h1>
+        <p>by Reinhard</p>
+    </div>
+    <div class="as-load-bar"><div></div></div>
+</div>
+
+<!-- Disclaimer (fallback) -->
+<div id="disclaimer">
+    <div id="optimized">
+        <div id="emoji">📱</div>
+        <div id="opt-title">Ashiro Motion</div>
+        <div id="opt-desc">Gunakan 2 jari untuk zoom kanvas. Untuk fitur penuh, buka di layar lebar.</div>
+        <a href="#" target="_blank" rel="noopener" id="opt-button">Tutup</a>
+    </div>
+    <div id="disc-overlay"></div>
+</div>
+
+<!-- Upload / hidden inputs -->
+<audio controls id="audio-thing"><source src="assets/audio.wav" type="audio/wav"></audio>
+<input type="file" id="filepick" accept="image/*,video/*,audio/*" multiple>
+<input type="file" id="filepick2" accept="audio/*">
+<input type="file" id="filepick3" accept="application/json">
+<input type="file" id="import" style="display:none" accept=".json" aria-hidden="true">
+
+<!-- ============================
+     TOP BAR (ala Alight Motion)
+     ============================ -->
+<header id="ashiro-topbar">
+    <button class="as-icon-btn" id="as-menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+    </button>
+
+    <div class="as-title">
+        <strong>Ashiro Motion</strong>
+        <small id="as-project-name">Proyek tanpa judul</small>
+    </div>
+
+    <button class="as-icon-btn" id="as-undo" aria-label="Undo">
+        <svg viewBox="0 0 24 24"><path d="M9 14l-4-4 4-4M5 10h9a5 5 0 110 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="as-icon-btn" id="as-redo" aria-label="Redo">
+        <svg viewBox="0 0 24 24"><path d="M15 14l4-4-4-4M19 10h-9a5 5 0 100 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <button class="as-primary-btn" id="as-export-btn">
+        <svg viewBox="0 0 24 24"><path d="M12 4v12m0-12l-4 4m4-4l4 4M5 20h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Ekspor</span>
+    </button>
+</header>
+
+<!-- ============================
+     CANVAS AREA
+     ============================ -->
+<div id="canvas-area">
+    <div id="canvas-wrap">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- Zoom HUD (ala Alight Motion, kanan atas) -->
+    <div id="ashiro-zoom-hud">
+        <button class="as-hud-btn" id="as-zoom-out">−</button>
+        <span id="zoom-display">100%</span>
+        <button class="as-hud-btn" id="as-zoom-in">+</button>
+    </div>
+
+    <!-- Hand tool -->
+    <button id="hand-tool" class="as-hud-btn" title="Hand tool">
+        <img src="assets/hand-tool.svg" alt="Hand">
+    </button>
+
+    <!-- Legacy kontrol top-canvas (disembunyikan tapi tetap ada) -->
+    <div id="top-canvas" style="display:none">
+        <div id="undo"><img src="assets/undo.svg" alt=""> Undo</div>
+        <div id="redo"><img src="assets/undo.svg" alt=""> Redo</div>
+        <div id="other-controls">
+            <div id="zoom-level" title="Zoom"><span>100%</span><img src="assets/arrow.svg" alt=""></div>
+            <div id="zoom-options" class="zoom-hidden">
+                <div class="zoom-options-item" data-zoom="in">Zoom in</div>
+                <div class="zoom-options-item" data-zoom="out">Zoom out</div>
+                <div class="zoom-options-item" data-zoom="50">Zoom ke 50%</div>
+                <div class="zoom-options-item" data-zoom="100">Zoom ke 100%</div>
+                <div class="zoom-options-item" data-zoom="200">Zoom ke 200%</div>
             </div>
         </div>
-        <hr>
-        <div id="object-specific">
-            <div id="canvas-properties" class="panel-section">
-                <p class="property-title">Canvas settings</p>
-                <table>
-                    <tr>
-                        <th class="name-col">Preset</th>
-                        <th class="value-col"><select id="preset"><option>Dribbble shot</option><option>Facebook post</option></select></th>
-                    </tr>
-                    <tr>
-                        <th class="name-col">Size</th>
-                        <th class="value-col"><div id="canvas-w" class="property-input" data-label='W'><input min=1 type="number" value=1000></div><div id="canvas-h" class="property-input" data-label='H'><input type="number" value=1000 min=1></div></th>
-                    </tr>
-                    <tr>
-                        <th class="name-col">Color</th>
-                        <th class="value-col">
-                            <div id="canvas-color">
-                                <div id="color-side" class="color-picker"></div>
-                                <input value="#FFFFFF" disabled="disabled">
-                            </div>
-                            <div id="canvas-color-opacity" class="property-input" data-label='%'><input type="number" value=100></div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th class="name-col">Duration</th>
-                        <th class="value-col" id="duration-cell"><div id="canvas-duration" class="property-input" data-label='s'><input type="number" value=15.00></div></th>
-                    </tr>
-                </table>
+    </div>
+    <div id="bottom-canvas" style="display:none">
+        <a id="sponsor" href="#" target="_blank" rel="noopener"><img src="assets/sponsor.svg" alt=""> Sponsor</a>
+        <a id="alyssa-credit" href="#" target="_blank" rel="noopener">By <span>Reinhard</span></a>
+    </div>
+
+    <img src="assets/replace-image.svg" id="replace-image" alt="">
+    <img src="assets/loading-image.svg" id="load-image" class="load-media" alt="">
+    <img src="assets/loading-video.svg" id="load-video" class="load-media" alt="">
+</div>
+
+<!-- ============================
+     TIMELINE AREA
+     ============================ -->
+<section id="ashiro-timeline-area">
+    <!-- Playback head -->
+    <div id="ashiro-playback">
+        <button class="as-play-btn" id="play-button" aria-label="Main">
+            <img src="assets/play-button.svg" alt="Play">
+        </button>
+        <div class="as-time">
+            <span id="current-time-label">00:00.0</span>
+        </div>
+        <div class="as-scrubber" id="as-scrubber">
+            <div class="as-scrubber-track"><div class="as-scrubber-fill" id="as-scrubber-fill"></div></div>
+            <div class="as-scrubber-thumb" id="as-scrubber-thumb"></div>
+        </div>
+        <div class="as-time">
+            <span id="total-time-label">00:15.0</span>
+        </div>
+        <button class="as-icon-btn as-icon-sm" id="skip-backward" aria-label="Mundur">
+            <img src="assets/skip.svg" alt="Mundur" style="transform:scaleX(-1)">
+        </button>
+        <button class="as-icon-btn as-icon-sm" id="skip-forward" aria-label="Maju">
+            <img src="assets/skip.svg" alt="Maju">
+        </button>
+    </div>
+
+    <!-- Layer list -->
+    <div id="layer-list">
+        <div id="layerhead">
+            <span>Layer</span>
+            <button class="as-add-layer" id="as-add-layer" aria-label="Tambah layer">+</button>
+        </div>
+        <div id="layer-inner-list">
+            <img src="assets/nolayers.svg" id="nolayers" alt="">
+        </div>
+    </div>
+
+    <!-- Legacy timeline (JS butuh) -->
+    <div id="timearea">
+        <div id="timeline">
+            <div id="seekarea">
+                <div id="inner-seekarea"><div id="seekevents"></div></div>
+                <div id="time-numbers" class="noselect"></div>
+                <div id="seek-hover"></div>
+                <div id="seekbar"></div>
+            </div>
+            <div id="line-snap"></div>
+            <div id="inner-timeline"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================
+     BOTTOM TOOLBAR
+     ============================ -->
+<nav id="toolbar" class="noselect">
+    <div id="logo"><img src="assets/logo.svg" alt="Ashiro Motion"></div>
+    <div id="tool-wrap">
+        <div class="tool tool-active" id="shape-tool" role="button"><img src="assets/shape-active.svg" alt=""><p>Objek</p></div>
+        <div class="tool" id="image-tool" role="button"><img src="assets/image.svg" alt=""><p>Gambar</p></div>
+        <div class="tool" id="text-tool" role="button"><img src="assets/text.svg" alt=""><p>Teks</p></div>
+        <div class="tool" id="video-tool" role="button"><img src="assets/video.svg" alt=""><p>Video</p></div>
+        <div class="tool" id="audio-tool" role="button"><img src="assets/audio.svg" alt=""><p>Audio</p></div>
+        <div class="tool" id="upload-tool" role="button"><img src="assets/uploads.svg" alt=""><p>Upload</p></div>
+        <div class="tool" id="more-tool" role="button"><img src="assets/more-hoz.svg" alt=""><p>Lainnya</p></div>
+    </div>
+</nav>
+
+<!-- More menu -->
+<div id="more-over">
+    <div id="upload-lottie"><img src="assets/upload-grey.svg" alt=""> Upload Lottie</div>
+    <div id="clear-project"><img src="assets/clear.svg" alt=""> Kosongkan proyek</div>
+</div>
+
+<div id="behind-browser"></div>
+
+<!-- ============================
+     BROWSER PANEL (slide-up)
+     ============================ -->
+<div id="browser">
+    <div id="browser-container">
+        <div id="search-fixed">
+            <p class="property-title">Objek</p>
+            <img id="collapse" src="assets/collapse.svg" alt="Tutup">
+            <div id="browser-search">
+                <input placeholder="Cari..." inputmode="search">
+                <img src="assets/search.svg" id="search-icon" alt="">
+                <img src="assets/delete.svg" id="delete-search" alt="Hapus">
+                <div id="search-button">Cari</div>
             </div>
         </div>
+        <div id="shapes-cont">
+            <p class="row-title">Bentuk</p>
+            <div class="gallery-row" id="shapes-row"></div>
+            <p class="row-title">Emoji</p>
+            <div class="gallery-row" id="emojis-row"></div>
         </div>
-        <div id="canvas-area">
-					<div id="filters-parent">
-						<div id="filters">
-							<div id="filters-container">
-							<div id="filters-header">
-								<div id="filters-title">Filters</div>
-								<img src="assets/close.svg" id="filters-close">
-							</div>
-							<select id="filters-list">
-								<option value="none">No filter</option>
-								<option value="Invert">Invert</option>
-								<option value="Sepia">Sepia</option>
-								<option value="BlackWhite">Black & white</option>
-								<option value="Brownie">Retro</option>
-								<option value="Vintage">Vintage</option>
-								<option value="Technicolor">Technicolor</option>
-								<option value="Kodachrome">Kodachrome</option>
-								<option value="Polaroid">Polaroid</option>
-							</select>
-							<hr>
-							<div id="filters-title">Adjustments</div>
-							<div id="reset-filters"><img src="assets/repeat.svg"> Reset</div>
-							<div class="filter-row">
-								<th class="name-col">Brightness</th>
-								<th class="value-col">
-									<div id="filter-brightness" class="select-filter"></div>
-								</th>
-							</div>
-							<div class="filter-row">
-								<th class="name-col">Contrast</th>
-								<th class="value-col">
-									<div id="filter-contrast" class="select-filter"></div>
-								</th>
-							</div>
-							<div class="filter-row">
-								<th class="name-col">Saturation</th>
-								<th class="value-col">
-									<div id="filter-saturation" class="select-filter"></div>
-								</th>
-							</div>
-							<div class="filter-row">
-								<th class="name-col">Vibrance</th>
-								<th class="value-col">
-									<div id="filter-vibrance" class="select-filter"></div>
-								</th>
-							</div>
-							<div class="filter-row">
-								<th class="name-col">Hue</th>
-								<th class="value-col">
-									<div id="filter-hue" class="select-filter"></div>
-								</th>
-							</div>
-							<hr>
-							<div id="filters-title">Chroma key</div>
-							<div class="filter-row">
-								<th class="name-col">Status</th>
-								<th class="value-col">
-									<div id="status-toggle">
-										<div id="status-on" class="status-trigger">On</div>
-										<div id="status-off" class="status-trigger status-active">Off</div>
-									</div>
-								</th>
-							</div>
-							<div class="filter-row" id="filter-color">
-								<th class="name-col">Color</th>
-								<th class="value-col">
-									<div id="chroma-color">
-										<div id="color-chroma-side" class="color-picker"></div>
-										<input value="#FFFFFF" disabled="disabled">
-									</div>
-								</th>
-							</div>
-							<div class="filter-row">
-								<th class="name-col">Distance</th>
-								<th class="value-col">
-									<div id="chroma-distance" class="select-filter"></div>
-								</th>
-							</div>
-							<hr>
-							<div id="filters-title">Stylize</div>
-							<div class="filter-row">
-								<th class="name-col">Noise</th>
-								<th class="value-col">
-									<div id="filter-noise" class="select-filter"></div>
-								</th>
-							</div>
-							<div class="filter-row" id="blur">
-								<th class="name-col">Blur</th>
-								<th class="value-col">
-									<div id="filter-blur" class="select-filter"></div>
-								</th>
-							</div>
-						</div>
-						</div>
-						</div>
-						<div id="top-canvas">
-							<div id="undo"><img src="assets/undo.svg"> Undo</div>
-							<div id="redo"><img src="assets/undo.svg"> Redo</div>
-							<div id="other-controls">
-                <div title="Hand tool (Space bar)" id="hand-tool">
-                    <img src="assets/hand-tool.svg">
-                </div>
-                <div id="zoom-level" title="Canvas zoom level"><span>100%</span><img src="assets/arrow.svg"></div>
-                <div id="zoom-options" class="zoom-hidden">
-                    <div class="zoom-options-item" data-zoom="in">Zoom in</div>
-                    <div class="zoom-options-item" data-zoom="out">Zoom out</div>
-                    <div class="zoom-options-item" data-zoom="50">Zoom to 50%</div>
-                    <div class="zoom-options-item" data-zoom="100">Zoom to 100%</div>
-                    <div class="zoom-options-item" data-zoom="200">Zoom to 200%</div>
-                </div>
-            	</div>
-						</div>
-						<div id="bottom-canvas">
-							<a id="sponsor" href="https://github.com/sponsors/alyssaxuu" target="_blank"><img src="assets/sponsor.svg"> Sponsor</a>
-							<a id="alyssa-credit" href="https://twitter.com/alyssaxuu" target="_blank">Made by <span>Alyssa X</span> <img src="assets/alyssaimg.jpeg"></a>
-						</div>
-            <img src="assets/replace-image.svg" id="replace-image">
-						<img src="assets/loading-image.svg" id="load-image" class="load-media">
-						<img src="assets/loading-video.svg" id="load-video" class="load-media">
-            <canvas id="canvas"></canvas>
+    </div>
+</div>
+
+<!-- ============================
+     PROPERTIES PANEL
+     ============================ -->
+<div id="properties">
+    <div id="properties-overlay"></div>
+    <div id="align" class="align-off">
+        <div id="align-v">
+            <img class="align" id="align-top" src="assets/align-top.svg" alt="Rata atas">
+            <img class="align" id="align-center-v" src="assets/align-center-v.svg" alt="Rata tengah">
+            <img class="align" id="align-bottom" src="assets/align-bottom.svg" alt="Rata bawah">
         </div>
-        <div id="timeline-handle"></div>
-        <div id="bottom-area" class="noselect">
-            <div id="keyframe-properties">
-                <div id="easing">
-                    <p class="property-title">Keyframe easing</p>
-                    <select id="easing">
-                        <option value="linear">Linear</option>
-                        <option value="easeInQuad">Ease in</option>
-                        <option value="easeOutQuad">Ease out</option>
-                        <option value="easeinOutQuad">Ease in-out</option>
-                        <option value="easeOutInQuad">Ease out-in</option>
-												<option value="easeInBounce">Ease in bounce</option>
-                        <option value="easeOutBounce">Ease out bounce</option>
-                        <option value="easeinOutBounce">Ease in-out bounce</option>
-                        <option value="easeOutInBouce">Ease out-in bounce</option>
-												<option value="easeOutInBouce">Ease out-in bounce</option>
-												<option value="easeInSine">Ease in sine</option>
-                        <option value="easeOutSine">Ease out sine</option>
-                        <option value="easeinOutSine">Ease in-out sine</option>
-                        <option value="easeOutInSine">Ease out-in sine</option>
-												<option value="easeOutInSine">Ease out-in sine</option>
-												<option value="easeInCubic">Ease in cubic</option>
-                        <option value="easeOutCubic">Ease out cubic</option>
-                        <option value="easeinOutCubic">Ease in-out cubic</option>
-                        <option value="easeOutInCubic">Ease out-in cubic</option>
-												<option value="easeOutInCubic">Ease out-in cubic</option>
-                    </select>
-                </div>
+        <div id="align-h">
+            <img class="align" id="align-left" src="assets/align-left.svg" alt="Rata kiri">
+            <img class="align" id="align-center-h" src="assets/align-center-h.svg" alt="Rata tengah">
+            <img class="align" id="align-right" src="assets/align-right.svg" alt="Rata kanan">
+        </div>
+    </div>
+    <hr>
+    <div id="object-specific">
+        <div id="canvas-properties" class="panel-section">
+            <p class="property-title">Pengaturan kanvas</p>
+            <table>
+                <tr>
+                    <th class="name-col">Preset</th>
+                    <th class="value-col">
+                        <select id="preset">
+                            <option>Dribbble shot</option>
+                            <option>Facebook post</option>
+                            <option>Instagram Story</option>
+                            <option>TikTok</option>
+                            <option>YouTube Thumbnail</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="name-col">Ukuran</th>
+                    <th class="value-col">
+                        <div id="canvas-w" class="property-input" data-label="L"><input min="1" type="number" value="1000" inputmode="numeric"></div>
+                        <div id="canvas-h" class="property-input" data-label="T"><input type="number" value="1000" min="1" inputmode="numeric"></div>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="name-col">Warna</th>
+                    <th class="value-col">
+                        <div id="canvas-color">
+                            <div id="color-side" class="color-picker"></div>
+                            <input value="#FFFFFF" disabled="disabled">
+                        </div>
+                        <div id="canvas-color-opacity" class="property-input" data-label="%"><input type="number" value="100" inputmode="numeric"></div>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="name-col">Durasi</th>
+                    <th class="value-col" id="duration-cell">
+                        <div id="canvas-duration" class="property-input" data-label="s"><input type="number" value="15.00" inputmode="decimal"></div>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ============================
+     FILTERS PANEL
+     ============================ -->
+<div id="filters-parent">
+    <div id="filters">
+        <div id="filters-container">
+            <div id="filters-header">
+                <div id="filters-title">Filter</div>
+                <img src="assets/close.svg" id="filters-close" alt="Tutup">
             </div>
-            <div id="nothing"></div>
-            <div id="layer-list">
-                <div id="layerhead">LAYERS</div>
-                <div id="layer-inner-list">
-									<img src="assets/nolayers.svg" id="nolayers">
-                </div>
+            <select id="filters-list">
+                <option value="none">Tanpa filter</option>
+                <option value="Invert">Invert</option>
+                <option value="Sepia">Sepia</option>
+                <option value="BlackWhite">Hitam & putih</option>
+                <option value="Brownie">Retro</option>
+                <option value="Vintage">Vintage</option>
+                <option value="Technicolor">Technicolor</option>
+                <option value="Kodachrome">Kodachrome</option>
+                <option value="Polaroid">Polaroid</option>
+            </select>
+            <hr>
+            <div id="filters-title">Penyesuaian</div>
+            <div id="reset-filters"><img src="assets/repeat.svg" alt=""> Reset</div>
+            <div class="filter-row"><th class="name-col">Kecerahan</th><th class="value-col"><div id="filter-brightness" class="select-filter"></div></th></div>
+            <div class="filter-row"><th class="name-col">Kontras</th><th class="value-col"><div id="filter-contrast" class="select-filter"></div></th></div>
+            <div class="filter-row"><th class="name-col">Saturasi</th><th class="value-col"><div id="filter-saturation" class="select-filter"></div></th></div>
+            <div class="filter-row"><th class="name-col">Vibrance</th><th class="value-col"><div id="filter-vibrance" class="select-filter"></div></th></div>
+            <div class="filter-row"><th class="name-col">Hue</th><th class="value-col"><div id="filter-hue" class="select-filter"></div></th></div>
+            <hr>
+            <div id="filters-title">Chroma key</div>
+            <div class="filter-row">
+                <th class="name-col">Status</th>
+                <th class="value-col">
+                    <div id="status-toggle">
+                        <div id="status-on" class="status-trigger">Nyala</div>
+                        <div id="status-off" class="status-trigger status-active">Mati</div>
+                    </div>
+                </th>
             </div>
-            <div id="timearea">
-                <div id="timeline">
-                    <div id="seekarea"><div id="inner-seekarea"><div id="seekevents"></div></div><div id="time-numbers" class="noselect"></div><div id="seek-hover"></div><div id="seekbar"></div></div>
-                    <div id="line-snap"></div>
-                    <div id="inner-timeline"></div>
-                </div>
+            <div class="filter-row" id="filter-color">
+                <th class="name-col">Warna</th>
+                <th class="value-col">
+                    <div id="chroma-color">
+                        <div id="color-chroma-side" class="color-picker"></div>
+                        <input value="#FFFFFF" disabled="disabled">
+                    </div>
+                </th>
+            </div>
+            <div class="filter-row"><th class="name-col">Jarak</th><th class="value-col"><div id="chroma-distance" class="select-filter"></div></th></div>
+            <hr>
+            <div id="filters-title">Stylize</div>
+            <div class="filter-row"><th class="name-col">Noise</th><th class="value-col"><div id="filter-noise" class="select-filter"></div></th></div>
+            <div class="filter-row" id="blur"><th class="name-col">Blur</th><th class="value-col"><div id="filter-blur" class="select-filter"></div></th></div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================
+     MODALS
+     ============================ -->
+<div id="upload-popup">
+    <div id="upload-popup-container">
+        <div id="upload-popup-header">
+            <div id="upload-popup-title">Upload media</div>
+            <img id="upload-popup-close" src="assets/close.svg" alt="Tutup">
+        </div>
+        <div id="upload-drop-area">
+            <div id="upload-drop-group">
+                <img src="assets/upload.svg" alt="">
+                <div id="upload-drop-title">Ketuk untuk upload</div>
+                <div id="upload-drop-subtitle">Atau tarik & lepas file</div>
             </div>
         </div>
-        <div style="display:none;"">
-            <canvas id="canvasrecord"></canvas>
+        <div id="upload-link">
+            <input id="upload-link-input" placeholder="Tempel URL gambar/video" inputmode="url">
+            <div id="upload-link-add">Tambah</div>
         </div>
-        <div id="controls" class="noselect">
-            <img id="timeline-big" src="assets/timeline-big.svg">
-            <div id="timeline-zoom"></div>
-            <img id="timeline-small" src="assets/timeline-small.svg">
-						<div id="speed">
-							<div id="speed-settings">
-								<div class="speed" data-speed="4">4.0x</div>
-								<div class="speed" data-speed="3">3.0x</div>
-								<div class="speed" data-speed="2">2.0x</div>
-								<div class="speed" data-speed="1.5">1.5x</div>
-								<div class="speed" data-speed="1">1.0x</div>
-								<div class="speed" data-speed="0.5">0.5x</div>
-							</div>
-							<img src="assets/zap.svg"> <span>1.0x</span> <img id="speed-arrow" src="assets/arrow.svg">
-						</div>
-            <div id="playback">
-                <div id="current-time">
-                    <input value="00:00:00" readonly>
-                </div>
-                <img src="assets/skip.svg" id="skip-backward">
-                <img src="assets/play-button.svg" id="play-button">
-                <img src="assets/skip.svg" id="skip-forward">
-                <div id="total-time">
-                    <input value="00:00:00" readonly>
-                </div>
-            </div>
-						<div id="controls-right">
-							<div id="share"><img src="assets/importexport.svg"> Import & export</div>
-							<div id="download"><img src="assets/download-icon.svg"> Download</div>
-						</div>
+    </div>
+    <div id="upload-overlay"></div>
+</div>
+
+<div id="download-modal">
+    <p class="header">Pengaturan ekspor</p>
+    <p class="subheader">Format</p>
+    <div id="radio">
+        <input class="magic-radio" type="radio" name="radio" id="webm-format" value="webm" checked>
+        <label for="webm-format">WEBM <span>(tercepat)</span></label>
+        <input class="magic-radio" type="radio" name="radio" value="mp4" id="mp4-format">
+        <label for="mp4-format">MP4</label>
+        <input class="magic-radio" type="radio" name="radio" value="gif" id="gif-format">
+        <label for="gif-format">GIF</label>
+        <input class="magic-radio" type="radio" name="radio" value="image" id="image-format">
+        <label for="image-format">Gambar</label>
+    </div>
+    <div id="download-real">Ekspor sekarang</div>
+</div>
+
+<div id="import-export-modal">
+    <p class="header">Impor &amp; ekspor</p>
+    <p class="subtitle">Simpan atau muat proyek Ashiro.</p>
+    <p class="header-2">Impor proyek</p>
+    <div id="import-project"><img src="assets/import.svg" alt=""> <span>Impor</span></div>
+    <p class="header-2">Ekspor proyek</p>
+    <div id="export-project"><img src="assets/download-icon.svg" alt=""> <span>Ekspor</span></div>
+</div>
+
+<div id="background-overlay"></div>
+<div id="color-picker"></div>
+<div id="color-picker-fill"></div>
+
+<div id="timeline-handle"></div>
+<div id="bottom-area" class="noselect">
+    <div id="keyframe-properties">
+        <div id="easing-wrap">
+            <p class="property-title">Easing keyframe</p>
+            <select id="easing">
+                <option value="linear">Linear</option>
+                <option value="easeInQuad">Ease in</option>
+                <option value="easeOutQuad">Ease out</option>
+                <option value="easeinOutQuad">Ease in-out</option>
+                <option value="easeOutInQuad">Ease out-in</option>
+                <option value="easeInBounce">Ease in bounce</option>
+                <option value="easeOutBounce">Ease out bounce</option>
+                <option value="easeinOutBounce">Ease in-out bounce</option>
+                <option value="easeInSine">Ease in sine</option>
+                <option value="easeOutSine">Ease out sine</option>
+                <option value="easeinOutSine">Ease in-out sine</option>
+                <option value="easeInCubic">Ease in cubic</option>
+                <option value="easeOutCubic">Ease out cubic</option>
+                <option value="easeinOutCubic">Ease in-out cubic</option>
+            </select>
         </div>
-        
-        <video id="test-video"></video>
-        <input id="emptyInput" value=" " style="opacity:0">
-				<script src="js/libraries/localbase.js"></script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@simonwep/selection-js/lib/selection.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/libraries/sortable.min.js"></script>
-        <script src="js/libraries/range-slider.min.js"></script>
-        <script src="js/libraries/jquery.nice-select.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/460/fabric.min.js"></script>
-        <script src="js/libraries/anime.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-        <script src="js/init.js"></script>
-        <script src="js/ui.js"></script>
-        <script src="js/align.js"></script>
-        <script src="js/converter.js"></script>
-				<script src="js/database.js"></script>
-				<script src="js/lottie.js"></script>
-				<script src="js/text.js"></script>
-				<script src="js/recorder.js"></script>
-        <script src="js/functions.js"></script>
-        <script src="js/events.js"></script>
-    </body>
+    </div>
+    <div id="nothing"></div>
+</div>
+
+<div id="controls" class="noselect" style="display:none">
+    <img id="timeline-big" src="assets/timeline-big.svg" alt="">
+    <div id="timeline-zoom"></div>
+    <img id="timeline-small" src="assets/timeline-small.svg" alt="">
+    <div id="speed">
+        <div id="speed-settings">
+            <div class="speed" data-speed="4">4.0x</div>
+            <div class="speed" data-speed="3">3.0x</div>
+            <div class="speed" data-speed="2">2.0x</div>
+            <div class="speed" data-speed="1.5">1.5x</div>
+            <div class="speed" data-speed="1">1.0x</div>
+            <div class="speed" data-speed="0.5">0.5x</div>
+        </div>
+        <img src="assets/zap.svg" alt=""> <span>1.0x</span> <img id="speed-arrow" src="assets/arrow.svg" alt="">
+    </div>
+    <div id="playback">
+        <div id="current-time"><input value="00:00:00" readonly></div>
+        <img src="assets/skip.svg" id="legacy-skip-back" alt="">
+        <img src="assets/play-button.svg" id="legacy-play" alt="">
+        <img src="assets/skip.svg" id="legacy-skip-fwd" alt="">
+        <div id="total-time"><input value="00:00:00" readonly></div>
+    </div>
+    <div id="controls-right">
+        <div id="share"><img src="assets/importexport.svg" alt=""> Impor &amp; ekspor</div>
+        <div id="download"><img src="assets/download-icon.svg" alt=""> Ekspor</div>
+    </div>
+</div>
+
+<div style="display:none;"><canvas id="canvasrecord"></canvas></div>
+<video id="test-video"></video>
+<input id="emptyInput" value=" " style="opacity:0">
+
+<!-- Libraries -->
+<script src="js/libraries/localbase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/selection-js/lib/selection.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/libraries/sortable.min.js"></script>
+<script src="js/libraries/range-slider.min.js"></script>
+<script src="js/libraries/jquery.nice-select.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/460/fabric.min.js"></script>
+<script src="js/libraries/anime.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+<!-- App -->
+<script src="js/init.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/align.js"></script>
+<script src="js/converter.js"></script>
+<script src="js/database.js"></script>
+<script src="js/lottie.js"></script>
+<script src="js/text.js"></script>
+<script src="js/recorder.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/events.js"></script>
+
+<!-- Ashiro mobile bootstrap -->
+<script>
+(function () {
+    // Splash
+    var splash = document.getElementById('ashiro-splash');
+    function hideSplash() {
+        if (!splash) return;
+        splash.classList.add('as-hide');
+        setTimeout(function () { splash.remove(); }, 600);
+    }
+    if (document.readyState === 'complete') setTimeout(hideSplash, 500);
+    else window.addEventListener('load', function () { setTimeout(hideSplash, 500); });
+    setTimeout(hideSplash, 4000);
+
+    var isMobile = window.matchMedia('(max-width: 900px)').matches &&
+                   ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    if (!isMobile) return;
+
+    document.body.classList.add('is-mobile');
+
+    // Buka panel bawah
+    function openPanel(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.classList.add('mobile-open');
+    }
+    function closeAllPanels() {
+        ['browser', 'properties', 'filters-parent'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.classList.remove('mobile-open');
+        });
+    }
+
+    // Toolbar → buka panel
+    document.querySelectorAll('#tool-wrap .tool').forEach(function (tool) {
+        tool.addEventListener('click', function () {
+            var id = tool.id;
+            if (id === 'more-tool') return;
+            var t = document.getElementById('browser');
+            if (t) {
+                t.classList.add('mobile-open');
+                t.classList.remove('mobile-closed');
+            }
+        }, true);
+    });
+
+    // Tap kanvas → tutup panel
+    document.addEventListener('touchstart', function (e) {
+        if (e.target.tagName === 'CANVAS') closeAllPanels();
+    }, { passive: true });
+
+    // Zoom HUD
+    var zoomIn = document.getElementById('as-zoom-in');
+    var zoomOut = document.getElementById('as-zoom-out');
+    if (zoomIn) zoomIn.addEventListener('click', function () {
+        var el = document.getElementById('zoom-level');
+        if (el) el.click();
+    });
+
+    console.log('[Ashiro Motion] mobile mode · by Reinhard');
+})();
+</script>
+</body>
 </html>
