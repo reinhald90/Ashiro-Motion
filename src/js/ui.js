@@ -1,3 +1,8 @@
+/* ============================================================
+ * Ashiro Motion — UI Module
+ * Developer: Reinhard
+ * ============================================================ */
+
 // Update panel (when selecting / de-selecting objects)
 function updatePanel(selection) {
   if (!selection) {
@@ -6,11 +11,7 @@ function updatePanel(selection) {
     $('#preset').append("<option value='custom'>Custom</option>");
     presets.forEach(function (preset) {
       $('#preset').append(
-        "<option value='" +
-          preset.id +
-          "'>" +
-          preset.name +
-          '</option>'
+        "<option value='" + preset.id + "'>" + preset.name + '</option>'
       );
     });
     $('#preset').val(activepreset);
@@ -25,9 +26,7 @@ function updatePanel(selection) {
     canvas.getActiveObject().get('assetType') == 'audio'
   ) {
     $('#object-specific').html(audio_panel);
-    $('#object-volume input').val(
-      canvas.getActiveObject().get('volume') * 200
-    );
+    $('#object-volume input').val(canvas.getActiveObject().get('volume') * 200);
   } else if (
     selection &&
     canvas.getActiveObjects().length == 1 &&
@@ -45,9 +44,7 @@ function updatePanel(selection) {
     ) {
       $('#object-specific').append(image_panel);
       $('#object-specific').append(image_more_panel);
-    } else if (
-      canvas.getActiveObject().get('id').indexOf('Video') >= 0
-    ) {
+    } else if (canvas.getActiveObject().get('id').indexOf('Video') >= 0) {
       $('#object-specific').append(image_panel);
       $('#object-specific').append(video_more_panel);
     } else {
@@ -56,11 +53,7 @@ function updatePanel(selection) {
     objects.forEach(function (object) {
       if (object.id != canvas.getActiveObject().get('id')) {
         $('#masks').append(
-          "<option value='" +
-            object.id +
-            "'>" +
-            object.id +
-            '</option>'
+          "<option value='" + object.id + "'>" + object.id + '</option>'
         );
       }
     });
@@ -77,24 +70,16 @@ function updatePanel(selection) {
       max: 100,
       value: 100,
       onmove: function (x) {
-        document
-          .getElementById('object-o')
-          .getElementsByTagName('input')[0].value = x;
-        canvas.getActiveObject().set({
-          opacity: x / 100,
-        });
+        document.getElementById('object-o').getElementsByTagName('input')[0].value = x;
+        canvas.getActiveObject().set({ opacity: x / 100 });
         canvas.renderAll();
       },
       onfinish: function (x) {
-        document
-          .getElementById('object-o')
-          .getElementsByTagName('input')[0].value = x;
+        document.getElementById('object-o').getElementsByTagName('input')[0].value = x;
         updateObjectValues('opacity');
       },
       onstart: function (x) {
-        document
-          .getElementById('object-o')
-          .getElementsByTagName('input')[0].value = x;
+        document.getElementById('object-o').getElementsByTagName('input')[0].value = x;
       },
     });
     if (canvas.getActiveObject().get('type') == 'rect') {
@@ -117,28 +102,20 @@ function updatePanel(selection) {
         min: -200,
         max: 200,
         value: parseFloat(
-          (canvas.getActiveObject().get('charSpacing') / 10).toFixed(
-            2
-          )
+          (canvas.getActiveObject().get('charSpacing') / 10).toFixed(2)
         ),
         onmove: function (x) {
-          document
-            .getElementById('text-h')
-            .getElementsByTagName('input')[0].value = x;
+          document.getElementById('text-h').getElementsByTagName('input')[0].value = x;
           canvas.getActiveObject().set({ charSpacing: x * 10 });
           canvas.renderAll();
           updatePanelValues();
         },
         onfinish: function (x) {
-          document
-            .getElementById('text-h')
-            .getElementsByTagName('input')[0].value = x;
+          document.getElementById('text-h').getElementsByTagName('input')[0].value = x;
           updateObjectValues('opacity3');
         },
         onstart: function (x) {
-          document
-            .getElementById('text-h')
-            .getElementsByTagName('input')[0].value = x;
+          document.getElementById('text-h').getElementsByTagName('input')[0].value = x;
         },
       });
       selectme = document.getElementById('select-line');
@@ -152,29 +129,19 @@ function updatePanel(selection) {
         min: 1,
         max: 500,
         value: parseFloat(
-          (canvas.getActiveObject().get('lineHeight') * 100).toFixed(
-            2
-          )
+          (canvas.getActiveObject().get('lineHeight') * 100).toFixed(2)
         ),
         onmove: function (x) {
-          document
-            .getElementById('text-v')
-            .getElementsByTagName('input')[0].value = x;
-          canvas
-            .getActiveObject()
-            .set({ lineHeight: parseFloat(x / 100) });
+          document.getElementById('text-v').getElementsByTagName('input')[0].value = x;
+          canvas.getActiveObject().set({ lineHeight: parseFloat(x / 100) });
           canvas.renderAll();
         },
         onfinish: function (x) {
-          document
-            .getElementById('text-v')
-            .getElementsByTagName('input')[0].value = x;
+          document.getElementById('text-v').getElementsByTagName('input')[0].value = x;
           updateObjectValues('opacity3');
         },
         onstart: function (x) {
-          document
-            .getElementById('text-v')
-            .getElementsByTagName('input')[0].value = x;
+          document.getElementById('text-v').getElementsByTagName('input')[0].value = x;
         },
       });
       updateTextValues();
@@ -190,9 +157,7 @@ function updatePanel(selection) {
     $('#align').removeClass('align-off');
     $('#object-specific').html(object_panel);
     if (canvas.getActiveObject().get('type') == 'group') {
-      if (
-        canvas.getActiveObject().get('assetType') == 'animatedText'
-      ) {
+      if (canvas.getActiveObject().get('assetType') == 'animatedText') {
         $('#object-specific').append(other_panel);
         $('#object-specific').append(animated_text_panel);
         $('#object-specific').append(start_animation_panel);
@@ -202,94 +167,59 @@ function updatePanel(selection) {
           );
         });
         $('#font-picker').val(
-          animatedtext.find(
-            (x) => x.id == canvas.getActiveObject().id
-          ).props.fontFamily
+          animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.fontFamily
         );
         $('#font-picker').niceSelect();
         $('#text-color input').val(
           convertToHex(
-            animatedtext.find(
-              (x) => x.id == canvas.getActiveObject().id
-            ).props.fill
+            animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.fill
           )
         );
         $('#color-text-side').css(
           'background-color',
-          animatedtext.find(
-            (x) => x.id == canvas.getActiveObject().id
-          ).props.fill
+          animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.fill
         );
         text_animation_list.forEach(function (preset) {
           $('#preset-picker').append(
-            "<option value='" +
-              preset.name +
-              "'>" +
-              preset.label +
-              '</option>'
+            "<option value='" + preset.name + "'>" + preset.label + '</option>'
           );
         });
         $('#preset-picker').val(
-          animatedtext.find(
-            (x) => x.id == canvas.getActiveObject().id
-          ).props.preset
+          animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.preset
         );
         $('#preset-picker').niceSelect();
-        $('.order-toggle-item-active').removeClass(
-          'order-toggle-item-active'
-        );
-        $('.order-toggle-item-active-2').removeClass(
-          'order-toggle-item-active-2'
-        );
+        $('.order-toggle-item-active').removeClass('order-toggle-item-active');
+        $('.order-toggle-item-active-2').removeClass('order-toggle-item-active-2');
         if (
-          animatedtext.find(
-            (x) => x.id == canvas.getActiveObject().id
-          ).props.order == 'backward'
+          animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.order ==
+          'backward'
         ) {
           $('#order-backward').addClass('order-toggle-item-active');
         } else {
           $('#order-forward').addClass('order-toggle-item-active');
         }
         if (
-          animatedtext.find(
-            (x) => x.id == canvas.getActiveObject().id
-          ).props.typeAnim == 'letter'
+          animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.typeAnim ==
+          'letter'
         ) {
           $('#type-letters').addClass('order-toggle-item-active-2');
         } else {
           $('#type-words').addClass('order-toggle-item-active-2');
         }
         $('#easing-picker').val(
-          animatedtext.find(
-            (x) => x.id == canvas.getActiveObject().id
-          ).props.easing
+          animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.easing
         );
         $('#easing-picker').niceSelect();
         $('#durationinput').val(
-          animatedtext.find(
-            (x) => x.id == canvas.getActiveObject().id
-          ).props.duration / 1000
+          animatedtext.find((x) => x.id == canvas.getActiveObject().id).props.duration / 1000
         );
         $('#masks').niceSelect();
       }
-      /*
-            if (canvas.getActiveObject().isGroup) {
-                $("#object-specific").append(group_panel);
-            } else {
-                $("#object-specific").append(other_panel);
-            }
-            objects.forEach(function(object){
-                if (object.id != canvas.getActiveObject().get("id")) {
-                    $("#masks").append("<option value='"+object.id+"'>"+object.id+"</option>");
-                }
-            });
-            $("#masks").niceSelect();
-						*/
     } else {
       $('#object-specific').append(selection_panel);
     }
-    var selectme = document.getElementById('select-opacity');
-    o_slider = new RangeSlider(selectme, {
+    var selectme2 = document.getElementById('select-opacity');
+    o_slider = new RangeSlider(selectme2, {
       design: '2d',
       theme: 'default',
       handle: 'round',
@@ -300,22 +230,16 @@ function updatePanel(selection) {
       max: 100,
       value: 100,
       onmove: function (x) {
-        document
-          .getElementById('object-o')
-          .getElementsByTagName('input')[0].value = x;
+        document.getElementById('object-o').getElementsByTagName('input')[0].value = x;
         canvas.getActiveObject().set({ opacity: x / 100 });
         canvas.renderAll();
       },
       onfinish: function (x) {
-        document
-          .getElementById('object-o')
-          .getElementsByTagName('input')[0].value = x;
+        document.getElementById('object-o').getElementsByTagName('input')[0].value = x;
         updateObjectValues('opacity');
       },
       onstart: function (x) {
-        document
-          .getElementById('object-o')
-          .getElementsByTagName('input')[0].value = x;
+        document.getElementById('object-o').getElementsByTagName('input')[0].value = x;
       },
     });
     updatePanelValues();
@@ -331,10 +255,7 @@ function convertToHex(nonHexColorString) {
 function updateStrokeValues() {
   const object = canvas.getActiveObject();
   $('.line-join-active').removeClass('line-join-active');
-  if (
-    object.get('strokeDashArray') == false &&
-    object.get('strokeWidth') == 0
-  ) {
+  if (object.get('strokeDashArray') == false && object.get('strokeWidth') == 0) {
     $('#miter').addClass('line-join-active');
     $('#miter img').attr('src', 'assets/miter-active.svg');
   } else if (object.get('strokeDashArray') == false) {
@@ -351,50 +272,31 @@ function updateStrokeValues() {
 
 function toggleAnimationOrder() {
   var object = canvas.getActiveObject();
-  $('.order-toggle-item-active').removeClass(
-    'order-toggle-item-active'
-  );
+  $('.order-toggle-item-active').removeClass('order-toggle-item-active');
   if ($(this).attr('id') == 'order-backward') {
-    animatedtext
-      .find((x) => x.id == object.id)
-      .setProp({ order: 'backward' }, canvas);
+    animatedtext.find((x) => x.id == object.id).setProp({ order: 'backward' }, canvas);
   } else if ($(this).attr('id') == 'order-forward') {
-    animatedtext
-      .find((x) => x.id == object.id)
-      .setProp({ order: 'forward' }, canvas);
+    animatedtext.find((x) => x.id == object.id).setProp({ order: 'forward' }, canvas);
   }
   $(this).addClass('order-toggle-item-active');
   animate(currenttime, false);
   save();
 }
+
 function toggleAnimationType() {
   var object = canvas.getActiveObject();
-  $('.order-toggle-item-active-2').removeClass(
-    'order-toggle-item-active-2'
-  );
+  $('.order-toggle-item-active-2').removeClass('order-toggle-item-active-2');
   if ($(this).attr('id') == 'type-words') {
-    animatedtext
-      .find((x) => x.id == object.id)
-      .setProp({ typeAnim: 'word' }, canvas);
+    animatedtext.find((x) => x.id == object.id).setProp({ typeAnim: 'word' }, canvas);
   } else if ($(this).attr('id') == 'type-letters') {
-    animatedtext
-      .find((x) => x.id == object.id)
-      .setProp({ typeAnim: 'letter' }, canvas);
+    animatedtext.find((x) => x.id == object.id).setProp({ typeAnim: 'letter' }, canvas);
   }
   $(this).addClass('order-toggle-item-active-2');
   animate(currenttime, false);
   save();
 }
-$(document).on(
-  'click',
-  '.order-toggle-item:not(.order-toggle-item-active)',
-  toggleAnimationOrder
-);
-$(document).on(
-  'click',
-  '.order-toggle-item-2:not(.order-toggle-item-active-2)',
-  toggleAnimationType
-);
+$(document).on('click', '.order-toggle-item:not(.order-toggle-item-active)', toggleAnimationOrder);
+$(document).on('click', '.order-toggle-item-2:not(.order-toggle-item-active-2)', toggleAnimationType);
 
 function updateTextValues() {
   const object = canvas.getActiveObject();
@@ -405,41 +307,22 @@ function updateTextValues() {
   });
   $('#font-picker').val(object.get('fontFamily'));
   $('#font-picker').niceSelect();
-  $('#text-h input').val(
-    parseFloat((object.get('charSpacing') / 10).toFixed(2))
-  );
-  $('#text-v input').val(
-    parseFloat((object.get('lineHeight') * 100).toFixed(2))
-  );
+  $('#text-h input').val(parseFloat((object.get('charSpacing') / 10).toFixed(2)));
+  $('#text-v input').val(parseFloat((object.get('lineHeight') * 100).toFixed(2)));
   if (object.get('textAlign') == 'left') {
     $('#align-text-left').addClass('align-text-active');
-    $('#align-text-left img').attr(
-      'src',
-      'assets/align-text-left-active.svg'
-    );
+    $('#align-text-left img').attr('src', 'assets/align-text-left-active.svg');
   } else if (object.get('textAlign') == 'center') {
     $('#align-text-center').addClass('align-text-active');
-    $('#align-text-center img').attr(
-      'src',
-      'assets/align-text-center-active.svg'
-    );
+    $('#align-text-center img').attr('src', 'assets/align-text-center-active.svg');
   } else if (object.get('textAlign') == 'right') {
     $('#align-text-right').addClass('align-text-right-active');
-    $('#align-text-right img').attr(
-      'src',
-      'assets/align-text-right-active.svg'
-    );
+    $('#align-text-right img').attr('src', 'assets/align-text-right-active.svg');
   } else {
     $('#align-text-justify').addClass('align-text-justify-active');
-    $('#align-text-justify img').attr(
-      'src',
-      'assets/align-text-justify-active.svg'
-    );
+    $('#align-text-justify img').attr('src', 'assets/align-text-justify-active.svg');
   }
-  if (
-    object.get('fontWeight') == 'bold' ||
-    object.get('fontWeight') == 700
-  ) {
+  if (object.get('fontWeight') == 'bold' || object.get('fontWeight') == 700) {
     $('#format-bold').addClass('format-text-active');
     $('#format-bold img').attr('src', 'assets/bold-active.svg');
   }
@@ -449,10 +332,7 @@ function updateTextValues() {
   }
   if (object.get('underline') == true) {
     $('#format-underline').addClass('format-text-active');
-    $('#format-underline img').attr(
-      'src',
-      'assets/underline-active.svg'
-    );
+    $('#format-underline img').attr('src', 'assets/underline-active.svg');
   }
   if (object.get('linethrough') == true) {
     $('#format-strike').addClass('format-text-active');
@@ -464,51 +344,34 @@ function updateTextValues() {
 function updatePanelValues() {
   if (canvas.getActiveObject()) {
     if (canvas.getActiveObject().get('assetType') == 'audio') {
-      $('#object-volume input').val(
-        canvas.getActiveObject().get('volume') * 200
-      );
+      $('#object-volume input').val(canvas.getActiveObject().get('volume') * 200);
       return false;
     }
     setting = true;
     var tempstore = false;
     var object = canvas.getActiveObject();
-    if (
-      canvas.getActiveObjects.length > 1 ||
-      object.get('type') == 'activeSelection'
-    ) {
+    if (canvas.getActiveObjects.length > 1 || object.get('type') == 'activeSelection') {
       object = object.toGroup();
       object.set({
-        shadow: {
-          blur: 0,
-          color: 'black',
-          offsetX: 0,
-          offsetY: 0,
-          opacity: 0,
-        },
+        shadow: { blur: 0, color: 'black', offsetX: 0, offsetY: 0, opacity: 0 },
       });
       tempstore = true;
     }
     if (object.get('assetType') == 'animatedText') {
-      $('#animated-text input').val(
-        animatedtext.find((x) => x.id == object.id).text
-      );
+      $('#animated-text input').val(animatedtext.find((x) => x.id == object.id).text);
     }
     if (objects.find((x) => x.id == object.get('id'))) {
       if (
-        $(
-          "#masks option[value='" +
-            objects.find((x) => x.id == object.get('id')).mask +
-            "']"
-        ).length == 0
+        $("#masks option[value='" +
+          objects.find((x) => x.id == object.get('id')).mask +
+          "']").length == 0
       ) {
         $('#masks').val('none');
         objects.find((x) => x.id == object.get('id')).mask = 'none';
         object.clipPath = null;
         canvas.renderAll();
       } else {
-        $('#masks').val(
-          objects.find((x) => x.id == object.get('id')).mask
-        );
+        $('#masks').val(objects.find((x) => x.id == object.get('id')).mask);
       }
       $('#masks').niceSelect('update');
     }
@@ -531,32 +394,14 @@ function updatePanelValues() {
         ).toFixed(2)
       )
     );
-    $('#object-w input').val(
-      parseFloat(
-        (object.get('width') * object.get('scaleX')).toFixed(2)
-      )
-    );
-    $('#object-h input').val(
-      parseFloat(
-        (object.get('height') * object.get('scaleY')).toFixed(2)
-      )
-    );
-    $('#object-r input').val(
-      parseFloat(object.get('angle').toFixed(2))
-    );
-    $('#object-stroke input').val(
-      parseFloat(object.get('strokeWidth').toFixed(2))
-    );
+    $('#object-w input').val(parseFloat((object.get('width') * object.get('scaleX')).toFixed(2)));
+    $('#object-h input').val(parseFloat((object.get('height') * object.get('scaleY')).toFixed(2)));
+    $('#object-r input').val(parseFloat(object.get('angle').toFixed(2)));
+    $('#object-stroke input').val(parseFloat(object.get('strokeWidth').toFixed(2)));
     if (object.get('type') != 'group') {
-      $('#object-shadow-x input').val(
-        parseFloat(object.shadow.offsetX.toFixed(2))
-      );
-      $('#object-shadow-y input').val(
-        parseFloat(object.shadow.offsetY.toFixed(2))
-      );
-      $('#object-blur input').val(
-        parseFloat(object.shadow.blur.toFixed(2))
-      );
+      $('#object-shadow-x input').val(parseFloat(object.shadow.offsetX.toFixed(2)));
+      $('#object-shadow-y input').val(parseFloat(object.shadow.offsetY.toFixed(2)));
+      $('#object-blur input').val(parseFloat(object.shadow.blur.toFixed(2)));
       colormode = 'stroke';
       o_fill.setColor(object.get('stroke'));
       colormode = 'shadow';
@@ -564,9 +409,7 @@ function updatePanelValues() {
     }
     o_slider.setValue(object.get('opacity') * 100);
     if (object.get('type') == 'rect') {
-      $('#object-corners input').val(
-        parseFloat(object.get('rx').toFixed(2))
-      );
+      $('#object-corners input').val(parseFloat(object.get('rx').toFixed(2)));
       colormode = 'fill';
       o_fill.setColor(object.get('fill'));
     } else if (
@@ -611,20 +454,14 @@ function updateInputs(id) {
     colormode = 'fill';
     o_fill.setColor(
       'rgba(' +
-        o_fill.getColor().toRGBA()[0] +
-        ',' +
-        o_fill.getColor().toRGBA()[1] +
-        ',' +
-        o_fill.getColor().toRGBA()[2] +
-        ',' +
-        $('#object-color-fill-opacity input').val() / 100 +
-        ')'
+        o_fill.getColor().toRGBA()[0] + ',' +
+        o_fill.getColor().toRGBA()[1] + ',' +
+        o_fill.getColor().toRGBA()[2] + ',' +
+        $('#object-color-fill-opacity input').val() / 100 + ')'
     );
   }
   if (
-    !isNaN(
-      parseFloat($('#object-color-stroke-opacity input').val())
-    ) &&
+    !isNaN(parseFloat($('#object-color-stroke-opacity input').val())) &&
     id == 'object-color-stroke-opacity'
   ) {
     if ($('#object-color-stroke-opacity input').val() > 100) {
@@ -635,20 +472,14 @@ function updateInputs(id) {
     colormode = 'stroke';
     o_fill.setColor(
       'rgba(' +
-        o_fill.getColor().toRGBA()[0] +
-        ',' +
-        o_fill.getColor().toRGBA()[1] +
-        ',' +
-        o_fill.getColor().toRGBA()[2] +
-        ',' +
-        $('#object-color-stroke-opacity input').val() / 100 +
-        ')'
+        o_fill.getColor().toRGBA()[0] + ',' +
+        o_fill.getColor().toRGBA()[1] + ',' +
+        o_fill.getColor().toRGBA()[2] + ',' +
+        $('#object-color-stroke-opacity input').val() / 100 + ')'
     );
   }
   if (
-    !isNaN(
-      parseFloat($('#object-color-shadow-opacity input').val())
-    ) &&
+    !isNaN(parseFloat($('#object-color-shadow-opacity input').val())) &&
     id == 'object-color-shadow-opacity'
   ) {
     if ($('#object-color-shadow-opacity input').val() > 100) {
@@ -659,14 +490,10 @@ function updateInputs(id) {
     colormode = 'shadow';
     o_fill.setColor(
       'rgba(' +
-        o_fill.getColor().toRGBA()[0] +
-        ',' +
-        o_fill.getColor().toRGBA()[1] +
-        ',' +
-        o_fill.getColor().toRGBA()[2] +
-        ',' +
-        $('#object-color-shadow-opacity input').val() / 100 +
-        ')'
+        o_fill.getColor().toRGBA()[0] + ',' +
+        o_fill.getColor().toRGBA()[1] + ',' +
+        o_fill.getColor().toRGBA()[2] + ',' +
+        $('#object-color-shadow-opacity input').val() / 100 + ')'
     );
   }
 }
@@ -684,16 +511,12 @@ function updateObjectValues(type) {
         var obj = p_keyframes.find((x) => x.id == object.id);
         var length = obj.end - obj.start;
         if ($(this).find('input').val() * 1000 > length) {
-          $(this)
-            .find('input')
-            .val(length / 1000);
+          $(this).find('input').val(length / 1000);
         }
-        animatedtext
-          .find((x) => x.id == object.id)
-          .setProp(
-            { duration: $(this).find('input').val() * 1000 },
-            canvas
-          );
+        animatedtext.find((x) => x.id == object.id).setProp(
+          { duration: $(this).find('input').val() * 1000 },
+          canvas
+        );
         save();
         return false;
       }
@@ -705,12 +528,10 @@ function updateObjectValues(type) {
           parseFloat($(this).find('input').val()) / 200,
           true
         );
-        canvas
-          .getActiveObject()
-          .set(
-            'volume',
-            parseFloat($(this).find('input').val()) / 200
-          );
+        canvas.getActiveObject().set(
+          'volume',
+          parseFloat($(this).find('input').val()) / 200
+        );
       }
       editingpanel = true;
       var selection = false;
@@ -722,8 +543,7 @@ function updateObjectValues(type) {
         selection = true;
       }
       if (objects.find((x) => x.id == object.get('id'))) {
-        objects.find((x) => x.id == object.get('id')).mask =
-          $('#masks').val();
+        objects.find((x) => x.id == object.get('id')).mask = $('#masks').val();
         if ($('#masks').val() == 'none') {
           object.clipPath = null;
           canvas.renderAll();
@@ -741,12 +561,8 @@ function updateObjectValues(type) {
           parseFloat($('#object-y input').val()) +
           artboard.get('top') +
           (object.get('height') * object.get('scaleY')) / 2,
-        scaleX: parseFloat(
-          $('#object-w input').val() / object.get('width')
-        ),
-        scaleY: parseFloat(
-          $('#object-h input').val() / object.get('height')
-        ),
+        scaleX: parseFloat($('#object-w input').val() / object.get('width')),
+        scaleY: parseFloat($('#object-h input').val() / object.get('height')),
         angle: parseFloat($('#object-r input').val()),
         opacity: parseFloat($('#object-o input').val() / 100),
         strokeWidth: parseFloat($('#object-stroke input').val()),
@@ -784,10 +600,7 @@ function updateObjectValues(type) {
       }
     }
   } else {
-    if (
-      $(this).attr('id') == 'canvas-w' ||
-      $(this).attr('id') == 'canvas-h'
-    ) {
+    if ($(this).attr('id') == 'canvas-w' || $(this).attr('id') == 'canvas-h') {
       artboard.set({
         width: parseFloat($('#canvas-w input').val()),
         height: parseFloat($('#canvas-h input').val()),
@@ -796,10 +609,8 @@ function updateObjectValues(type) {
       resizeCanvas();
       if (activepreset != 'custom') {
         if (
-          presets.find((x) => x.id == activepreset).width !=
-            $('#canvas-w input').val() ||
-          presets.find((x) => x.id == activepreset).height !=
-            $('#canvas-h input').val()
+          presets.find((x) => x.id == activepreset).width != $('#canvas-w input').val() ||
+          presets.find((x) => x.id == activepreset).height != $('#canvas-h input').val()
         ) {
           activepreset = 'custom';
           updatePanel();
@@ -819,18 +630,15 @@ function updateObjectValues(type) {
       colormode = 'back';
       o_fill.setColor(
         'rgba(' +
-          o_fill.getColor().toRGBA()[0] +
-          ',' +
-          o_fill.getColor().toRGBA()[1] +
-          ',' +
-          o_fill.getColor().toRGBA()[2] +
-          ',' +
-          $('#canvas-color-opacity input').val() / 100 +
-          ')'
+          o_fill.getColor().toRGBA()[0] + ',' +
+          o_fill.getColor().toRGBA()[1] + ',' +
+          o_fill.getColor().toRGBA()[2] + ',' +
+          $('#canvas-color-opacity input').val() / 100 + ')'
       );
     }
   }
 }
+
 function setTextAnimation() {
   var object = canvas.getActiveObject();
   animatedtext
@@ -847,7 +655,7 @@ $(document).on('change', '.property-input', updateObjectValues);
 $(document).on('change', '#masks', updateObjectValues);
 $(document).on('click', '#animatedset', setTextAnimation);
 
-// Toggle picker (maybe it could be condensed?)
+// Toggle picker
 function togglePicker() {
   const object = canvas.getActiveObject();
   if (!o_fill.isOpen()) {
@@ -864,17 +672,13 @@ function togglePicker() {
     } else if ($(this).attr('id') == 'chroma-color') {
       colormode = 'chroma';
       if (object.filters.find((x) => x.type == 'RemoveColor')) {
-        o_fill.setColor(
-          object.filters.find((x) => x.type == 'RemoveColor').color
-        );
+        o_fill.setColor(object.filters.find((x) => x.type == 'RemoveColor').color);
       } else {
         o_fill.setColor('#FFF');
       }
     } else if ($(this).attr('id') == 'text-color') {
       colormode = 'text';
-      o_fill.setColor(
-        animatedtext.find((x) => x.id == object.id).props.fill
-      );
+      o_fill.setColor(animatedtext.find((x) => x.id == object.id).props.fill);
     } else {
       colormode = 'shadow';
       o_fill.setColor(object.shadow.color);
@@ -904,244 +708,154 @@ function populateGrid(type) {
     shape_grid_items.forEach(function (item) {
       $('#shapes-row').append(
         "<div class='grid-item'><img onload='onLoadImage(this)' draggable=false src='" +
-          item +
-          "'></div>"
+          item + "'></div>"
       );
     });
     emoji_items.forEach(function (item) {
       $('#emojis-row').append(
         "<div class='grid-emoji-item'><img  onload='onLoadImage(this)' draggable=false src='" +
-          item +
-          "'></div>"
+          item + "'></div>"
       );
     });
   } else if (type == 'image-tool') {
     $('#images-grid').html('');
     image_categories.forEach(function (category) {
       $('#categories').append(
-        "<div class='category' data-name='" +
-          category.name +
-          "'><img onload='onLoadImage(this)' src='" +
-          category.image +
-          "'>" +
-          category.name +
-          '</div>'
+        "<div class='category' data-name='" + category.name +
+          "'><img onload='onLoadImage(this)' src='" + category.image + "'>" +
+          category.name + '</div>'
       );
     });
   } else if (type == 'video-tool') {
     $('#images-grid').html('');
     video_categories.forEach(function (category) {
       $('#categories').append(
-        "<div class='category' data-name='" +
-          category.name +
-          "'><img onload='onLoadImage(this)' src='" +
-          category.image +
-          "'>" +
-          category.name +
-          '</div>'
+        "<div class='category' data-name='" + category.name +
+          "'><img onload='onLoadImage(this)' src='" + category.image + "'>" +
+          category.name + '</div>'
       );
     });
   } else if (type == 'images-tab') {
     $('#images-grid').html('');
     var flag = false;
-    uploaded_images
-      .slice()
-      .reverse()
-      .forEach(function (item) {
-        if (!item.hidden) {
-          flag = true;
-          $('#images-grid').append(
-            "<div class='image-grid-item' data-src='" +
-              item.src +
-              "' data-type='" +
-              item.type +
-              "' data-key='" +
-              item.key +
-              "'><img class='delete-media' draggable=false src='assets/more-options.svg'><img draggable=false onload='onLoadImage(this)' class='image-thing' src='" +
-              item.thumb +
-              "'</div>"
-          );
-        }
-      });
+    uploaded_images.slice().reverse().forEach(function (item) {
+      if (!item.hidden) {
+        flag = true;
+        $('#images-grid').append(
+          "<div class='image-grid-item' data-src='" + item.src +
+            "' data-type='" + item.type + "' data-key='" + item.key +
+            "'><img class='delete-media' draggable=false src='assets/more-options.svg'>" +
+            "<img draggable=false onload='onLoadImage(this)' class='image-thing' src='" +
+            item.thumb + "'></div>"
+        );
+      }
+    });
     $('#landing').remove();
     if (!flag) {
       $('#upload-tabs').after(
-        '<div id="landing" class="upload-landing"><div id="landing-text">Your uploaded images will show up here for easy access.</div></div>'
+        '<div id="landing" class="upload-landing"><div id="landing-text">Gambar yang kamu upload akan muncul di sini.</div></div>'
       );
     }
   } else if (type == 'videos-tab') {
     $('#images-grid').html('');
-    var flag = false;
-    uploaded_videos
-      .slice()
-      .reverse()
-      .forEach(function (item) {
-        if (!item.hidden) {
-          flag = true;
-          $('#images-grid').append(
-            "<div class='video-grid-item' data-src='" +
-              item.src +
-              "' data-type='" +
-              item.type +
-              "' data-key='" +
-              item.key +
-              "'><img class='delete-media' draggable=false src='assets/more-options.svg'><img draggable=false onload='onLoadImage(this)' class='image-thing' src='" +
-              item.thumb +
-              "'></div>"
-          );
-        }
-      });
+    var flag2 = false;
+    uploaded_videos.slice().reverse().forEach(function (item) {
+      if (!item.hidden) {
+        flag2 = true;
+        $('#images-grid').append(
+          "<div class='video-grid-item' data-src='" + item.src +
+            "' data-type='" + item.type + "' data-key='" + item.key +
+            "'><img class='delete-media' draggable=false src='assets/more-options.svg'>" +
+            "<img draggable=false onload='onLoadImage(this)' class='image-thing' src='" +
+            item.thumb + "'></div>"
+        );
+      }
+    });
     $('#landing').remove();
-    if (!flag) {
+    if (!flag2) {
       $('#upload-tabs').after(
-        '<div id="landing" class="upload-landing"><div id="landing-text">Your uploaded videos will show up here for easy access.</div></div>'
+        '<div id="landing" class="upload-landing"><div id="landing-text">Video yang kamu upload akan muncul di sini.</div></div>'
       );
     }
   } else if (type == 'audio-tool') {
-    var flag = false;
     audio_items.forEach(function (item) {
       if (item.src == background_key) {
-        flag = true;
         $('#audio-list').append(
-          "<div class='audio-item audio-item-active' data-src='" +
-            item.src +
-            "'><div class='audio-preview'><img src='assets/play-button.svg'></div><img class='audio-thumb' src='" +
-            item.thumb +
-            "'><div class='audio-info'><div class='audio-info-title'>" +
-            item.name +
-            "</div><a href='" +
-            item.link +
-            "' target='_blank' class='audio-info-desc'>" +
-            item.desc +
-            "</a><div class='audio-info-duration'>" +
-            item.duration +
+          "<div class='audio-item audio-item-active' data-src='" + item.src +
+            "'><div class='audio-preview'><img src='assets/play-button.svg'></div>" +
+            "<img class='audio-thumb' src='" + item.thumb +
+            "'><div class='audio-info'><div class='audio-info-title'>" + item.name +
+            "</div><a href='" + item.link + "' target='_blank' class='audio-info-desc'>" +
+            item.desc + "</a><div class='audio-info-duration'>" + item.duration +
             '</div></div></div></div>'
         );
       } else {
         $('#audio-list').append(
-          "<div class='audio-item' data-src='" +
-            item.src +
-            "'><div class='audio-preview'><img src='assets/play-button.svg'></div><img class='audio-thumb' src='" +
-            item.thumb +
-            "'><div class='audio-info'><div class='audio-info-title'>" +
-            item.name +
-            "</div><a href='" +
-            item.link +
-            "' target='_blank' class='audio-info-desc'>" +
-            item.desc +
-            "</a><div class='audio-info-duration'>" +
-            item.duration +
+          "<div class='audio-item' data-src='" + item.src +
+            "'><div class='audio-preview'><img src='assets/play-button.svg'></div>" +
+            "<img class='audio-thumb' src='" + item.thumb +
+            "'><div class='audio-info'><div class='audio-info-title'>" + item.name +
+            "</div><a href='" + item.link + "' target='_blank' class='audio-info-desc'>" +
+            item.desc + "</a><div class='audio-info-duration'>" + item.duration +
             '</div></div></div></div>'
         );
       }
     });
   } else if (type == 'text-tool') {
-    $('#shapes-cont').append("<p class='row-title'>Animated</p>");
-    $('#shapes-cont').append(
-      "<div class='animated-text-grid'></div>"
-    );
+    $('#shapes-cont').append("<p class='row-title'>Animasi</p>");
+    $('#shapes-cont').append("<div class='animated-text-grid'></div>");
     text_animation_list.forEach(function (text) {
       $('.animated-text-grid').append(
-        "<div class='animated-text-item noselect' data-id='" +
-          text.name +
-          "'><img draggable='false' class='noselect' src='" +
-          text.src +
-          "'></div>"
+        "<div class='animated-text-item noselect' data-id='" + text.name +
+          "'><img draggable='false' class='noselect' src='" + text.src + "'></div>"
       );
     });
     $('#shapes-cont').append("<p class='row-title'>Sans Serif</p>");
     text_items.sansserif.forEach(function (text) {
-      WebFont.load({
-        google: {
-          families: [text.fontname],
-        },
-      });
+      WebFont.load({ google: { families: [text.fontname] } });
       $('#shapes-cont').append(
-        "<div id='item-text' class='add-text noselect' data-font='" +
-          text.fontname +
-          "' style='font-family: " +
-          text.fontname +
-          ", sans-serif'>" +
-          text.name +
-          '</div>'
+        "<div id='item-text' class='add-text noselect' data-font='" + text.fontname +
+          "' style='font-family: " + text.fontname + ", sans-serif'>" +
+          text.name + '</div>'
       );
     });
     $('#shapes-cont').append("<p class='row-title'>Serif</p>");
     text_items.serif.forEach(function (text) {
-      WebFont.load({
-        google: {
-          families: [text.fontname],
-        },
-      });
+      WebFont.load({ google: { families: [text.fontname] } });
       $('#shapes-cont').append(
-        "<div id='item-text' class='add-text noselect' data-font='" +
-          text.fontname +
-          "' style='font-family: " +
-          text.fontname +
-          "'>" +
-          text.name +
-          '</div>'
+        "<div id='item-text' class='add-text noselect' data-font='" + text.fontname +
+          "' style='font-family: " + text.fontname + "'>" + text.name + '</div>'
       );
     });
     $('#shapes-cont').append("<p class='row-title'>Monospace</p>");
     text_items.monospace.forEach(function (text) {
-      WebFont.load({
-        google: {
-          families: [text.fontname],
-        },
-      });
+      WebFont.load({ google: { families: [text.fontname] } });
       $('#shapes-cont').append(
-        "<div id='item-text' class='add-text noselect' data-font='" +
-          text.fontname +
-          "' style='font-family: " +
-          text.fontname +
-          "'>" +
-          text.name +
-          '</div>'
+        "<div id='item-text' class='add-text noselect' data-font='" + text.fontname +
+          "' style='font-family: " + text.fontname + "'>" + text.name + '</div>'
       );
     });
     $('#shapes-cont').append("<p class='row-title'>Handwriting</p>");
     text_items.handwriting.forEach(function (text) {
-      WebFont.load({
-        google: {
-          families: [text.fontname],
-        },
-      });
+      WebFont.load({ google: { families: [text.fontname] } });
       $('#shapes-cont').append(
-        "<div id='item-text' class='add-text noselect' data-font='" +
-          text.fontname +
-          "' style='font-family: " +
-          text.fontname +
-          "'>" +
-          text.name +
-          '</div>'
+        "<div id='item-text' class='add-text noselect' data-font='" + text.fontname +
+          "' style='font-family: " + text.fontname + "'>" + text.name + '</div>'
       );
     });
     $('#shapes-cont').append("<p class='row-title'>Display</p>");
     text_items.display.forEach(function (text) {
-      WebFont.load({
-        google: {
-          families: [text.fontname],
-        },
-      });
+      WebFont.load({ google: { families: [text.fontname] } });
       $('#shapes-cont').append(
-        "<div id='item-text' class='add-text noselect' data-font='" +
-          text.fontname +
-          "' style='font-family: " +
-          text.fontname +
-          "'>" +
-          text.name +
-          '</div>'
+        "<div id='item-text' class='add-text noselect' data-font='" + text.fontname +
+          "' style='font-family: " + text.fontname + "'>" + text.name + '</div>'
       );
     });
   }
 }
 
 function scrollBottom() {
-  if (
-    $(this).scrollTop() + $(this).innerHeight() >=
-    $(this)[0].scrollHeight - 50
-  ) {
+  if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 50) {
     loadMoreMedia();
   }
   if ($(this).scrollTop() > 0) {
@@ -1166,7 +880,6 @@ function addAnimatedText() {
   animatedtext.push(newtext);
   newtext.render(canvas);
 }
-
 $(document).on('click', '.animated-text-item', addAnimatedText);
 
 // Switch active panel in the library
@@ -1205,11 +918,7 @@ function updateUploadType() {
   $(this).addClass('upload-tab-active');
   populateGrid($(this).attr('id'));
 }
-$(document).on(
-  'click',
-  '.upload-tab:not(.upload-tab-active)',
-  updateUploadType
-);
+$(document).on('click', '.upload-tab:not(.upload-tab-active)', updateUploadType);
 
 // Switch tool
 function switchTool(e) {
@@ -1280,11 +989,7 @@ function dragObject(e) {
     return false;
   }
   var drag = $(this).clone();
-  drag.css({
-    background: 'transparent',
-    boxShadow: 'none',
-    color: '#000',
-  });
+  drag.css({ background: 'transparent', boxShadow: 'none', color: '#000' });
   drag.appendTo('body');
   drag.css({
     position: 'absolute',
@@ -1315,29 +1020,21 @@ function dragObject(e) {
     var left = offset.left + (e.pageX - pageX);
     var top = offset.top + (e.pageY - pageY);
     drag.offset({ left: left, top: top });
-
     if (
       overCanvas &&
       canvas.getActiveObject() &&
       !replacing &&
       canvas.getActiveObject().type == 'image' &&
-      (drag.hasClass('image-grid-item') ||
-        drag.hasClass('video-grid-item'))
+      (drag.hasClass('image-grid-item') || drag.hasClass('video-grid-item'))
     ) {
       if (e.ctrlKey) {
         drag.css('visibility', 'hidden');
-        replaceObject(
-          drag.attr('data-src'),
-          canvas.getActiveObject()
-        );
+        replaceObject(drag.attr('data-src'), canvas.getActiveObject());
         replacing = true;
       } else {
         $('#replace-image').addClass('replace-active');
       }
-    } else if (
-      (replacing && !canvas.getActiveObject()) ||
-      (replacing && !e.ctrlKey)
-    ) {
+    } else if ((replacing && !canvas.getActiveObject()) || (replacing && !e.ctrlKey)) {
       drag.css('visibility', 'visible');
       replaceObject(oldsrc, oldobj);
       replacing = false;
@@ -1346,7 +1043,6 @@ function dragObject(e) {
     } else {
       $('#replace-image').removeClass('replace-active');
     }
-
     if (overCanvas) {
       drag.css({ opacity: 1 });
     } else {
@@ -1372,21 +1068,10 @@ function dragObject(e) {
     }
     if (move && !replacing) {
       if (drag.hasClass('grid-item')) {
-        newSVG(
-          drag.find('img').attr('src'),
-          xpos,
-          ypos,
-          drag.width(),
-          false
-        );
+        newSVG(drag.find('img').attr('src'), xpos, ypos, drag.width(), false);
       } else if (drag.hasClass('image-external-grid-item')) {
         $('#load-image').addClass('loading-active');
-        savePixabayImage(
-          drag.attr('data-src'),
-          xpos,
-          ypos,
-          drag.width()
-        );
+        savePixabayImage(drag.attr('data-src'), xpos, ypos, drag.width());
       } else if (drag.hasClass('video-external-grid-item')) {
         savePixabayVideo(
           drag.attr('data-src'),
@@ -1396,13 +1081,7 @@ function dragObject(e) {
         );
       } else if (drag.hasClass('image-grid-item')) {
         $('#load-image').addClass('loading-active');
-        loadImage(
-          drag.attr('data-src'),
-          xpos,
-          ypos,
-          drag.width(),
-          false
-        );
+        loadImage(drag.attr('data-src'), xpos, ypos, drag.width(), false);
       } else if (drag.hasClass('grid-emoji-item')) {
         $('#load-image').addClass('loading-active');
         loadImage(
@@ -1415,47 +1094,31 @@ function dragObject(e) {
       } else if (drag.hasClass('add-text')) {
         if (drag.attr('id') == 'heading-text') {
           newTextbox(
-            50,
-            700,
-            'Add a heading',
+            50, 700, 'Add a heading',
             canvasx - artboard.get('left'),
             canvasy - artboard.get('top'),
-            drag.width(),
-            false,
-            drag.attr('data-font')
+            drag.width(), false, drag.attr('data-font')
           );
         } else if (drag.attr('id') == 'subheading-text') {
           newTextbox(
-            22,
-            500,
-            'Add a subheading',
+            22, 500, 'Add a subheading',
             canvasx - artboard.get('left'),
             canvasy - artboard.get('top'),
-            drag.width(),
-            false,
-            drag.attr('data-font')
+            drag.width(), false, drag.attr('data-font')
           );
         } else if (drag.attr('id') == 'body-text') {
           newTextbox(
-            18,
-            400,
-            'Add body text',
+            18, 400, 'Add body text',
             canvasx - artboard.get('left'),
             canvasy - artboard.get('top'),
-            drag.width(),
-            false,
-            drag.attr('data-font')
+            drag.width(), false, drag.attr('data-font')
           );
         } else {
           newTextbox(
-            18,
-            400,
-            'Your text',
+            18, 400, 'Your text',
             canvasx - artboard.get('left'),
             canvasy - artboard.get('top'),
-            drag.width(),
-            false,
-            drag.attr('data-font')
+            drag.width(), false, drag.attr('data-font')
           );
         }
       } else if (drag.hasClass('video-grid-item')) {
@@ -1468,8 +1131,7 @@ function dragObject(e) {
           drag.find('img').attr('src'),
           artboard.get('left') + artboard.get('width') / 2,
           artboard.get('top') + artboard.get('height') / 2,
-          100,
-          true
+          100, true
         );
       } else if (drag.hasClass('image-external-grid-item')) {
         savePixabayImage(
@@ -1491,8 +1153,7 @@ function dragObject(e) {
           drag.attr('data-src'),
           artboard.get('left') + artboard.get('width') / 2,
           artboard.get('top') + artboard.get('height') / 2,
-          150,
-          true
+          150, true
         );
       } else if (drag.hasClass('grid-emoji-item')) {
         $('#load-image').addClass('loading-active');
@@ -1500,53 +1161,36 @@ function dragObject(e) {
           drag.find('img').attr('src'),
           artboard.get('left') + artboard.get('width') / 2,
           artboard.get('top') + artboard.get('height') / 2,
-          50,
-          true
+          50, true
         );
       } else if (drag.hasClass('add-text')) {
         if (drag.attr('id') == 'heading-text') {
           newTextbox(
-            50,
-            700,
-            'Add a heading',
+            50, 700, 'Add a heading',
             artboard.get('left') + artboard.get('width') / 2,
             artboard.get('top') + artboard.get('height') / 2,
-            drag.width(),
-            true,
-            drag.attr('data-font')
+            drag.width(), true, drag.attr('data-font')
           );
         } else if (drag.attr('id') == 'subheading-text') {
           newTextbox(
-            22,
-            500,
-            'Add a subheading',
+            22, 500, 'Add a subheading',
             artboard.get('left') + artboard.get('width') / 2,
             artboard.get('top') + artboard.get('height') / 2,
-            drag.width(),
-            true,
-            drag.attr('data-font')
+            drag.width(), true, drag.attr('data-font')
           );
         } else if (drag.attr('id') == 'body-text') {
           newTextbox(
-            18,
-            400,
-            'Add body text',
+            18, 400, 'Add body text',
             artboard.get('left') + artboard.get('width') / 2,
             artboard.get('top') + artboard.get('height') / 2,
-            drag.width(),
-            true,
-            drag.attr('data-font')
+            drag.width(), true, drag.attr('data-font')
           );
         } else {
           newTextbox(
-            18,
-            400,
-            'Your text',
+            18, 400, 'Your text',
             artboard.get('left') + artboard.get('width') / 2,
             artboard.get('top') + artboard.get('height') / 2,
-            drag.width(),
-            true,
-            drag.attr('data-font')
+            drag.width(), true, drag.attr('data-font')
           );
         }
       } else if (drag.hasClass('video-grid-item')) {
@@ -1615,16 +1259,12 @@ $(document).on('change', '#preset', setPreset);
 
 function setTextPreset() {
   var object = canvas.getActiveObject();
-  animatedtext
-    .find((x) => x.id == object.id)
-    .setProp({ preset: $(this).val() }, canvas);
+  animatedtext.find((x) => x.id == object.id).setProp({ preset: $(this).val() }, canvas);
   save();
 }
 function setTextEasing() {
   var object = canvas.getActiveObject();
-  animatedtext
-    .find((x) => x.id == object.id)
-    .setProp({ easing: $(this).val() }, canvas);
+  animatedtext.find((x) => x.id == object.id).setProp({ easing: $(this).val() }, canvas);
   save();
 }
 $(document).on('change', '#preset-picker', setTextPreset);
@@ -1635,11 +1275,7 @@ function deleteMedia(e) {
   e.preventDefault();
   e.stopPropagation();
   var key = $(this).parent().attr('data-key');
-  if (
-    window.confirm(
-      'Are you sure you want to permanently delete this asset? It will also remove any instances of it in the canvas.'
-    )
-  ) {
+  if (window.confirm('Yakin mau hapus aset ini secara permanen? Semua instance-nya juga akan hilang dari kanvas.')) {
     deleteAsset(key);
   }
 }
@@ -1649,11 +1285,10 @@ $(document).on('mousedown', '.delete-media', deleteMedia);
 function saveLayerName() {
   $('.name-active').prop('readonly', true);
   if ($('.name-active').val() == '') {
-    $('.name-active').val('Untitled layer');
+    $('.name-active').val('Layer tanpa judul');
   }
   objects.find(
-    (x) =>
-      x.id == $('.name-active').parent().parent().attr('data-object')
+    (x) => x.id == $('.name-active').parent().parent().attr('data-object')
   ).label = $('.name-active').val();
   save();
   $('.name-active').removeClass('name-active');
@@ -1691,9 +1326,10 @@ function zoomTo() {
   canvas.absolutePan({ x: x, y: y });
   canvas.setZoom(zoom);
   canvas.renderAll();
-  $('#zoom-level span').html(
-    (canvas.getZoom() * 100).toFixed(0) + '%'
-  );
+  $('#zoom-level span').html((canvas.getZoom() * 100).toFixed(0) + '%');
+  // Sync ke HUD mobile
+  var zd = document.getElementById('zoom-display');
+  if (zd) zd.textContent = (canvas.getZoom() * 100).toFixed(0) + '%';
 }
 $(document).on('click', '.zoom-options-item', zoomTo);
 
@@ -1753,26 +1389,17 @@ function loadMoreMedia() {
   if (value != '' && page != false) {
     page += 1;
     if ($('#image-tool').hasClass('tool-active')) {
-      var URL =
-        'https://pixabay.com/api/?key=' +
-        API_KEY +
-        '&q=' +
-        encodeURIComponent(value) +
-        '&page=' +
-        page;
+      var URL = 'https://pixabay.com/api/?key=' + API_KEY +
+        '&q=' + encodeURIComponent(value) + '&page=' + page;
       $.getJSON(URL, function (data) {
         if (parseInt(data.totalHits) > 0) {
           $.each(data.hits, function (i, hit) {
             $('#images-grid').append(
               "<div class='image-grid-item image-external-grid-item' data-src='" +
-                hit.webformatURL +
-                "'><a class='credit' href='" +
-                hit.pageURL +
-                "' target='_blank'>" +
-                hit.user +
+                hit.webformatURL + "'><a class='credit' href='" + hit.pageURL +
+                "' target='_blank'>" + hit.user +
                 "</a><img draggable=false onload='onLoadImage(this)' src='" +
-                hit.webformatURL +
-                "'</div>"
+                hit.webformatURL + "'</div>"
             );
           });
         } else {
@@ -1780,31 +1407,20 @@ function loadMoreMedia() {
         }
       });
     } else if ($('#video-tool').hasClass('tool-active')) {
-      var URL =
-        'https://pixabay.com/api/videos/?key=' +
-        API_KEY +
-        '&q=' +
-        encodeURIComponent(value) +
-        '&page=' +
-        page;
-      $.getJSON(URL, function (data) {
+      var URL2 = 'https://pixabay.com/api/videos/?key=' + API_KEY +
+        '&q=' + encodeURIComponent(value) + '&page=' + page;
+      $.getJSON(URL2, function (data) {
         if (parseInt(data.totalHits) > 0) {
           $.each(data.hits, function (i, hit) {
             var video = hit.videos.medium.url;
             $('#images-grid').append(
               "<div class='image-grid-item video-external-grid-item' data-src='" +
-                video +
-                "'><a class='credit' href='" +
-                hit.pageURL +
-                "' target='_blank'>" +
-                hit.user +
-                "</a><div id='time-video'>" +
+                video + "'><a class='credit' href='" + hit.pageURL +
+                "' target='_blank'>" + hit.user + "</a><div id='time-video'>" +
                 fancyTimeFormat(hit.duration) +
                 "</div><img draggable=false onload='onLoadImage(this)' src='assets/transparent.png'</div>"
             );
-            createVideoThumbnail(video, 250, 0, true).then(function (
-              data
-            ) {
+            createVideoThumbnail(video, 250, 0, true).then(function (data) {
               $(".image-grid-item[data-src='" + video + "']")
                 .find('img')
                 .attr('src', data);
@@ -1822,13 +1438,8 @@ function search() {
   page = 1;
   var value = $('#browser-search input').val();
   if ($('#image-tool').hasClass('tool-active')) {
-    var URL =
-      'https://pixabay.com/api/?key=' +
-      API_KEY +
-      '&q=' +
-      encodeURIComponent(value) +
-      '&page=' +
-      page;
+    var URL = 'https://pixabay.com/api/?key=' + API_KEY +
+      '&q=' + encodeURIComponent(value) + '&page=' + page;
     $('#images-grid').html('');
     if (value != '') {
       $('#pixabay').addClass('hide-pixabay');
@@ -1838,21 +1449,16 @@ function search() {
           $.each(data.hits, function (i, hit) {
             $('#images-grid').append(
               "<div class='image-grid-item image-external-grid-item' data-src='" +
-                hit.webformatURL +
-                "'><a class='credit' href='" +
-                hit.pageURL +
-                "' target='_blank'>" +
-                hit.user +
+                hit.webformatURL + "'><a class='credit' href='" + hit.pageURL +
+                "' target='_blank'>" + hit.user +
                 "</a><img draggable=false onload='onLoadImage(this)' src='" +
-                hit.webformatURL +
-                "'</div>"
+                hit.webformatURL + "'</div>"
             );
           });
         } else {
           $('#shapes-cont').html(
-            "<div id='no-results'>Sorry, we couldn't find any results for &#x22;" +
-              encodeURIComponent(value) +
-              '&#x22;. Please try a different query.</div>'
+            "<div id='no-results'>Maaf, tidak ada hasil untuk &#x22;" +
+              encodeURIComponent(value) + '&#x22;. Coba kata kunci lain ya.</div>'
           );
         }
       });
@@ -1861,46 +1467,31 @@ function search() {
       $('#landing').removeClass('hide-landing');
     }
   } else if ($('#video-tool').hasClass('tool-active')) {
-    var URL =
-      'https://pixabay.com/api/videos/?key=' +
-      API_KEY +
-      '&q=' +
-      encodeURIComponent(value);
+    var URL2 = 'https://pixabay.com/api/videos/?key=' + API_KEY +
+      '&q=' + encodeURIComponent(value);
     $('#images-grid').html('');
     if (value != '') {
       $('#landing').addClass('hide-landing');
       $('#pixabay').addClass('hide-pixabay');
-      $.getJSON(URL, function (data) {
+      $.getJSON(URL2, function (data) {
         if (parseInt(data.totalHits) > 0) {
           $.each(data.hits, function (i, hit) {
             var video = hit.videos.medium.url;
             $('#images-grid').append(
               "<div class='image-grid-item video-external-grid-item' data-src='" +
-                video +
-                "'><a class='credit' href='" +
-                hit.pageURL +
-                "' target='_blank'>" +
-                hit.user +
-                "</a><div id='time-video'>" +
+                video + "'><a class='credit' href='" + hit.pageURL +
+                "' target='_blank'>" + hit.user + "</a><div id='time-video'>" +
                 fancyTimeFormat(hit.duration) +
                 "</div><img draggable=false onload='onLoadImage(this)' src='assets/transparent.png'</div>"
             );
-            //createVideoThumbnail(video, 250, 0, true).then(function(data){
             $(".image-grid-item[data-src='" + video + "']")
               .find('img')
-              .attr(
-                'src',
-                'https://i.vimeocdn.com/video/' +
-                  hit.picture_id +
-                  '_640x360.jpg'
-              );
-            //});
+              .attr('src', 'https://i.vimeocdn.com/video/' + hit.picture_id + '_640x360.jpg');
           });
         } else {
           $('#shapes-cont').html(
-            "<div id='no-results'>Sorry, we couldn't find any results for &#x22;" +
-              encodeURIComponent(value) +
-              '&#x22;. Please try a different query.</div>'
+            "<div id='no-results'>Maaf, tidak ada hasil untuk &#x22;" +
+              encodeURIComponent(value) + '&#x22;. Coba kata kunci lain ya.</div>'
           );
         }
       });
@@ -1911,7 +1502,8 @@ function search() {
   } else if ($('#shape-tool').hasClass('tool-active')) {
     if (value == '') {
       $('#shapes-cont').html(
-        '<p class="row-title">Shapes</p><div class="gallery-row" id="shapes-row"></div><p class="row-title">Emojis</p><div class="gallery-row" id="emojis-row"></div>'
+        '<p class="row-title">Bentuk</p><div class="gallery-row" id="shapes-row"></div>' +
+        '<p class="row-title">Emoji</p><div class="gallery-row" id="emojis-row"></div>'
       );
       populateGrid('shape-tool');
     } else {
@@ -1925,24 +1517,19 @@ function search() {
           flag = true;
           if (item.indexOf('emoji') > -1) {
             $('.gallery-row').append(
-              "<div class='grid-emoji-item'><img draggable=false src='" +
-                item +
-                "'></div>"
+              "<div class='grid-emoji-item'><img draggable=false src='" + item + "'></div>"
             );
           } else {
             $('.gallery-row').append(
-              "<div class='grid-item'><img draggable=false src='" +
-                item +
-                "'></div>"
+              "<div class='grid-item'><img draggable=false src='" + item + "'></div>"
             );
           }
         }
       });
       if (!flag) {
         $('#shapes-cont').html(
-          "<div id='no-results'>Sorry, we couldn't find any results for &#x22;" +
-            encodeURIComponent(value) +
-            '&#x22;. Please try a different query.</div>'
+          "<div id='no-results'>Maaf, tidak ada hasil untuk &#x22;" +
+            encodeURIComponent(value) + '&#x22;. Coba kata kunci lain ya.</div>'
         );
       }
     }
@@ -1953,31 +1540,21 @@ function search() {
     } else {
       $('#shapes-cont').html('');
       $('.row-title').remove();
-      var flag = false;
+      var flag2 = false;
       fonts.forEach(function (font) {
         if (font.toLowerCase().indexOf(value) > -1) {
-          flag = true;
-          WebFont.load({
-            google: {
-              families: [font],
-            },
-          });
+          flag2 = true;
+          WebFont.load({ google: { families: [font] } });
           $('#shapes-cont').append(
-            "<div id='item-text' class='add-text noselect' data-font='" +
-              font +
-              "' style='font-family: " +
-              font +
-              "'>" +
-              font +
-              '</div>'
+            "<div id='item-text' class='add-text noselect' data-font='" + font +
+              "' style='font-family: " + font + "'>" + font + '</div>'
           );
         }
       });
-      if (!flag) {
+      if (!flag2) {
         $('#shapes-cont').html(
-          "<div id='no-results'>Sorry, we couldn't find any results for &#x22;" +
-            encodeURIComponent(value) +
-            '&#x22;. Please try a different query.</div>'
+          "<div id='no-results'>Maaf, tidak ada hasil untuk &#x22;" +
+            encodeURIComponent(value) + '&#x22;. Coba kata kunci lain ya.</div>'
         );
       }
     }
@@ -1996,7 +1573,8 @@ function deleteSearch() {
   $('#delete-search').removeClass('show-delete');
   if ($('#shape-tool').hasClass('tool-active')) {
     $('#shapes-cont').html(
-      '<p class="row-title">Shapes</p><div class="gallery-row" id="shapes-row"></div><p class="row-title">Emojis</p><div class="gallery-row" id="emojis-row"></div>'
+      '<p class="row-title">Bentuk</p><div class="gallery-row" id="shapes-row"></div>' +
+      '<p class="row-title">Emoji</p><div class="gallery-row" id="emojis-row"></div>'
     );
     populateGrid('shape-tool');
   } else if ($('#image-tool').hasClass('tool-active')) {
@@ -2020,28 +1598,6 @@ $(document).on('click', '.category', searchCategory);
 function replaceAudioBackground() {
   var src = $(this).attr('data-src');
   newAudioLayer(src);
-  /*
-	if ($(this).hasClass("audio-item-active")) {
-		background_audio = false;
-		background_key = false;
-		$(this).removeClass("audio-item-active");
-		save();
-	} else {
-		var src = $(this).attr("data-src");
-		if (background_audio != false) {
-			$("#audio-upload-button").removeClass("remove-audio");
-			$("#audio-upload-button").html('<img src="assets/upload.svg"> Upload audio');
-		}
-		db.collection("projects").doc({id: 1}).update({
-			audiosrc: src,
-		});
-		background_audio = new Audio(src);
-		background_audio.crossOrigin = "anonymous";
-		background_key = src;
-		save();
-		$(this).addClass("audio-item-active");
-	}		
-	*/
 }
 $(document).on('click', '.audio-item', replaceAudioBackground);
 
@@ -2088,25 +1644,15 @@ function checkFilter() {
           ) {
             value = filter.type;
           } else if (filter.type == 'Brightness') {
-            sliders
-              .find((x) => x.name == 'filter-brightness')
-              .slider.setValue(filter.brightness * 100);
+            sliders.find((x) => x.name == 'filter-brightness').slider.setValue(filter.brightness * 100);
           } else if (filter.type == 'Contrast') {
-            sliders
-              .find((x) => x.name == 'filter-contrast')
-              .slider.setValue(filter.contrast * 100);
+            sliders.find((x) => x.name == 'filter-contrast').slider.setValue(filter.contrast * 100);
           } else if (filter.type == 'Vibrance') {
-            sliders
-              .find((x) => x.name == 'filter-vibrance')
-              .slider.setValue(filter.vibrance * 100);
+            sliders.find((x) => x.name == 'filter-vibrance').slider.setValue(filter.vibrance * 100);
           } else if (filter.type == 'Saturation') {
-            sliders
-              .find((x) => x.name == 'filter-saturation')
-              .slider.setValue(filter.saturation * 100);
+            sliders.find((x) => x.name == 'filter-saturation').slider.setValue(filter.saturation * 100);
           } else if (filter.type == 'HueRotation') {
-            sliders
-              .find((x) => x.name == 'filter-hue')
-              .slider.setValue(filter.rotation * 100);
+            sliders.find((x) => x.name == 'filter-hue').slider.setValue(filter.rotation * 100);
           } else if (filter.type == 'Blur') {
             blurslider.setValue(filter.blur * 100);
           } else if (filter.type == 'Noise') {
@@ -2143,23 +1689,14 @@ function clearFilters() {
 function applyFilter(name) {
   if (canvas.getActiveObject()) {
     var obj = canvas.getActiveObject();
-    if (name == 'Sepia') {
-      obj.filters.push(new f.Sepia());
-    } else if (name == 'Invert') {
-      obj.filters.push(new f.Invert());
-    } else if (name == 'BlackWhite') {
-      obj.filters.push(new f.BlackWhite());
-    } else if (name == 'Kodachrome') {
-      obj.filters.push(new f.Kodachrome());
-    } else if (name == 'Polaroid') {
-      obj.filters.push(new f.Polaroid());
-    } else if (name == 'Technicolor') {
-      obj.filters.push(new f.Technicolor());
-    } else if (name == 'Vintage') {
-      obj.filters.push(new f.Vintage());
-    } else if (name == 'Brownie') {
-      obj.filters.push(new f.Brownie());
-    }
+    if (name == 'Sepia') obj.filters.push(new f.Sepia());
+    else if (name == 'Invert') obj.filters.push(new f.Invert());
+    else if (name == 'BlackWhite') obj.filters.push(new f.BlackWhite());
+    else if (name == 'Kodachrome') obj.filters.push(new f.Kodachrome());
+    else if (name == 'Polaroid') obj.filters.push(new f.Polaroid());
+    else if (name == 'Technicolor') obj.filters.push(new f.Technicolor());
+    else if (name == 'Vintage') obj.filters.push(new f.Vintage());
+    else if (name == 'Brownie') obj.filters.push(new f.Brownie());
     obj.applyFilters();
     canvas.renderAll();
     save();
@@ -2187,37 +1724,25 @@ function resetFilters() {
       if (object.filters.length > 0) {
         sliders.forEach(function (slider) {
           var name = '';
-          if (slider.name == 'filter-hue') {
-            name = 'HueRotation';
-          } else if (slider.name == 'filter-brightness') {
-            name = 'Brightness';
-          } else if (slider.name == 'filter-vibrance') {
-            name = 'Vibrance';
-          } else if (slider.name == 'filter-contrast') {
-            name = 'Contrast';
-          } else if (slider.name == 'filter-saturation') {
-            name = 'Saturation';
-          }
+          if (slider.name == 'filter-hue') name = 'HueRotation';
+          else if (slider.name == 'filter-brightness') name = 'Brightness';
+          else if (slider.name == 'filter-vibrance') name = 'Vibrance';
+          else if (slider.name == 'filter-contrast') name = 'Contrast';
+          else if (slider.name == 'filter-saturation') name = 'Saturation';
           if (!object.filters.find((x) => x.type == name)) {
             slider.slider.setValue(0);
           }
         });
       } else {
-        sliders.forEach(function (slider) {
-          slider.slider.setValue(0);
-        });
+        sliders.forEach(function (slider) { slider.slider.setValue(0); });
       }
     } else {
-      sliders.forEach(function (slider) {
-        slider.slider.setValue(0);
-      });
+      sliders.forEach(function (slider) { slider.slider.setValue(0); });
     }
   }
 }
 function removeFilters() {
-  sliders.forEach(function (slider) {
-    slider.slider.setValue(0);
-  });
+  sliders.forEach(function (slider) { slider.slider.setValue(0); });
 }
 $(document).on('click', '#reset-filters', removeFilters);
 
@@ -2226,11 +1751,8 @@ function updateChromaValues() {
     var obj = canvas.getActiveObject();
     if ($('.status-active').attr('id') == 'status-on') {
       if (obj.filters.find((x) => x.type == 'RemoveColor')) {
-        obj.filters.find((x) => x.type == 'RemoveColor').distance =
-          chromaslider.getValue() / 100;
-        obj.filters.find((x) => x.type == 'RemoveColor').color = $(
-          '#chroma-color input'
-        ).val();
+        obj.filters.find((x) => x.type == 'RemoveColor').distance = chromaslider.getValue() / 100;
+        obj.filters.find((x) => x.type == 'RemoveColor').color = $('#chroma-color input').val();
       } else {
         obj.filters.push(
           new f.RemoveColor({
@@ -2263,22 +1785,15 @@ function updateChromaUI() {
         if (obj.filters.find((x) => x.type == 'RemoveColor')) {
           $('.status-active').removeClass('status-active');
           $('#status-on').addClass('status-active');
-          chromaslider.setValue(
-            obj.filters.find((x) => x.type == 'RemoveColor').distance
-          );
-          $('#chroma-color input').val(
-            obj.filters.find((x) => x.type == 'RemoveColor').color
-          );
-          $('#color-chroma-side').css(
-            'background-color',
-            obj.filters.find((x) => x.type == 'RemoveColor').color
-          );
+          chromaslider.setValue(obj.filters.find((x) => x.type == 'RemoveColor').distance);
+          $('#chroma-color input').val(obj.filters.find((x) => x.type == 'RemoveColor').color);
+          $('#color-chroma-side').css('background-color', obj.filters.find((x) => x.type == 'RemoveColor').color);
         } else {
           $('.status-active').removeClass('status-active');
           $('#status-off').addClass('status-active');
           chromaslider.setValue(1);
           $('#chroma-color input').val('#FFFFFF');
-          $('#color-chroma-side').css('background-color', '#FFFFF');
+          $('#color-chroma-side').css('background-color', '#FFFFFF');
         }
       }
     }
@@ -2292,12 +1807,7 @@ function toggleChroma() {
     updateChromaValues();
   }
 }
-
-$(document).on(
-  'click',
-  '.status-trigger:not(.status-active)',
-  toggleChroma
-);
+$(document).on('click', '.status-trigger:not(.status-active)', toggleChroma);
 
 async function getColor() {
   try {
@@ -2310,12 +1820,17 @@ $(document).on('click', '.pcr-current-color', getColor);
 
 function closeFilters() {
   $('.show-filters').removeClass('show-filters');
+  var fp = document.getElementById('filters-parent');
+  if (fp) fp.classList.remove('mobile-open');
 }
 
 function openFilters() {
   $('#filters-parent').addClass('show-filters');
+  var fp = document.getElementById('filters-parent');
+  if (fp && window.matchMedia('(max-width: 900px)').matches) {
+    fp.classList.add('mobile-open');
+  }
 }
-
 $(document).on('click', '#filters-button', openFilters);
 $(document).on('click', '#filters-close', closeFilters);
 
@@ -2333,20 +1848,53 @@ function setSpeed(e) {
   toggleSpeed(e);
   save();
 }
-
 $(document).on('click', '.speed', setSpeed);
 $(document).on('click', '#speed', toggleSpeed);
 
+/* ============================================================
+ * More menu — dioptimalkan untuk mobile & desktop
+ * ============================================================ */
 function showMore() {
-  $('#more-over').css(
-    'top',
-    $('#more-tool').offset().top + 5 - $('#more-over').height() / 4
-  );
-  $('#more-over').addClass('more-show');
+  var isMobile = window.matchMedia('(max-width: 900px)').matches;
+  var $menu = $('#more-over');
+  var $tool = $('#more-tool');
+
+  if (!$menu.length || !$tool.length) return;
+
+  if (isMobile) {
+    // Mobile: menu muncul di atas toolbar, full-width kiri
+    $menu.css({
+      position: 'fixed',
+      left: '12px',
+      right: '12px',
+      top: 'auto',
+      bottom: 'calc(70px + env(safe-area-inset-bottom, 0px))',
+      width: 'auto'
+    });
+  } else {
+    // Desktop: posisi relatif ke tool
+    $menu.css({
+      position: 'fixed',
+      left: 'auto',
+      right: '20px',
+      top: ($tool.offset().top + 5 - $menu.height() / 4) + 'px',
+      bottom: 'auto',
+      width: '220px'
+    });
+  }
+  $menu.addClass('more-show');
 }
+
 function hideMore() {
   $('#more-over').removeClass('more-show');
 }
+
+// Klik di luar menu = tutup
+$(document).on('click', function (e) {
+  if (!$(e.target).closest('#more-over, #more-tool').length) {
+    hideMore();
+  }
+});
 
 function handleLottieUpload() {
   var filething = $('#filepick3').get(0).files;
@@ -2360,10 +1908,64 @@ function handleLottieUpload() {
   };
   reader.readAsDataURL(filething.item(0));
 }
-
 $(document).on('change', '#filepick3', handleLottieUpload);
 
 function uploadLottie() {
   $('#filepick3').click();
 }
 $(document).on('click', '#upload-lottie', uploadLottie);
+
+/* ============================================================
+ * Extras — bantu mobile & bridge top bar
+ * ============================================================ */
+(function() {
+  // Bridge: HUD zoom di canvas → tombol legacy
+  var asZoomIn = document.getElementById('as-zoom-in');
+  var asZoomOut = document.getElementById('as-zoom-out');
+  if (asZoomIn) {
+    asZoomIn.addEventListener('click', function () {
+      var items = document.querySelectorAll('.zoom-options-item');
+      if (items.length) {
+        // Zoom in manual
+        var zoom = canvas.getZoom() + 0.2;
+        if (zoom > 20) zoom = 20;
+        canvas.setZoom(1);
+        canvas.renderAll();
+        var vpw = canvas.width / zoom;
+        var vph = canvas.height / zoom;
+        canvas.absolutePan({
+          x: artboard.left + artboard.width / 2 - vpw / 2,
+          y: artboard.top + artboard.height / 2 - vph / 2
+        });
+        canvas.setZoom(zoom);
+        canvas.renderAll();
+        var zd = document.getElementById('zoom-display');
+        if (zd) zd.textContent = (canvas.getZoom() * 100).toFixed(0) + '%';
+        var zl = document.querySelector('#zoom-level span');
+        if (zl) zl.innerHTML = (canvas.getZoom() * 100).toFixed(0) + '%';
+      }
+    });
+  }
+  if (asZoomOut) {
+    asZoomOut.addEventListener('click', function () {
+      var zoom = canvas.getZoom() - 0.2;
+      if (zoom < 0.01) zoom = 0.01;
+      canvas.setZoom(1);
+      canvas.renderAll();
+      var vpw = canvas.width / zoom;
+      var vph = canvas.height / zoom;
+      canvas.absolutePan({
+        x: artboard.left + artboard.width / 2 - vpw / 2,
+        y: artboard.top + artboard.height / 2 - vph / 2
+      });
+      canvas.setZoom(zoom);
+      canvas.renderAll();
+      var zd = document.getElementById('zoom-display');
+      if (zd) zd.textContent = (canvas.getZoom() * 100).toFixed(0) + '%';
+      var zl = document.querySelector('#zoom-level span');
+      if (zl) zl.innerHTML = (canvas.getZoom() * 100).toFixed(0) + '%';
+    });
+  }
+
+  console.log('%c[Ashiro Motion] ui.js loaded', 'color:#7c5cff;font-weight:700;');
+})();
